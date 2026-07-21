@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+}
+
+html {
+  overflow-y: scroll;
+}
+
+body {
+  font-family: 'Kanit', sans-serif;
+  background: #fff;
+  overflow-x: auto;
+}
+
+/* Map Figma font tokens to loaded Google Fonts */
+[class*="font-['Kanit:Regular']"],
+[class*='font-["Kanit:Regular"]'] {
+  font-family: 'Kanit', sans-serif !important;
+  font-weight: 400;
+}
+
+[class*="font-['Kanit:Medium']"],
+[class*='font-["Kanit:Medium"]'] {
+  font-family: 'Kanit', sans-serif !important;
+  font-weight: 500;
+}
+
+[class*="font-['Kanit:SemiBold']"],
+[class*='font-["Kanit:SemiBold"]'] {
+  font-family: 'Kanit', sans-serif !important;
+  font-weight: 600;
+}
+
+[class*="font-['Kanit:Light']"],
+[class*='font-["Kanit:Light"]'] {
+  font-family: 'Kanit', sans-serif !important;
+  font-weight: 300;
+}
+
+[class*="font-['Playfair_Display:Regular']"],
+[class*='font-["Playfair_Display:Regular"]'] {
+  font-family: 'Playfair Display', serif !important;
+  font-weight: 400;
+}
+
+[class*="font-['Playfair_Display:SemiBold']"],
+[class*='font-["Playfair_Display:SemiBold"]'] {
+  font-family: 'Playfair Display', serif !important;
+  font-weight: 600;
+}
+
+[class*="font-['Playfair_Display_SC:Regular']"],
+[class*='font-["Playfair_Display_SC:Regular"]'] {
+  font-family: 'Playfair Display SC', serif !important;
+  font-weight: 400;
+}
+
+[class*="font-['Playfair:Bold']"],
+[class*='font-["Playfair:Bold"]'] {
+  font-family: 'Playfair Display', serif !important;
+  font-weight: 700;
+}
+
+[class*="font-['Poppins:Regular']"],
+[class*='font-["Poppins:Regular"]'] {
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 400;
+}
+
+[class*="font-['Poppins:Bold']"],
+[class*='font-["Poppins:Bold"]'] {
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 700;
+}
+
+[class*="font-['Poppins:SemiBold']"],
+[class*='font-["Poppins:SemiBold"]'] {
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 600;
+}
+
+[class*="font-['Inter:Semi_Bold']"],
+[class*='font-["Inter:Semi_Bold"]'] {
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 600;
+}
+
+[class*="font-['Inter:Medium']"],
+[class*='font-["Inter:Medium"]'] {
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 500;
+}
+
+[class*="font-['Inter:Bold']"],
+[class*='font-["Inter:Bold"]'] {
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 700;
+}
+
+[class*="font-['Inter:Italic']"],
+[class*='font-["Inter:Italic"]'] {
+  font-family: 'Inter', sans-serif !important;
+  font-style: italic;
+}
+
+.home-page-root {
+  transform: translateY(var(--banner-scroll-offset, 0px));
+  will-change: transform;
+}
