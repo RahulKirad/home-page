@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const imgRectangle24 = new URL('../assets/imgRectangle24.png', import.meta.url).href;
 const imgRectangle25 = new URL('../assets/imgRectangle25.png', import.meta.url).href;
@@ -14,9 +14,13 @@ const SLIDES = [
   { id: 'traditional', image: imgRectangle28, label: 'Traditional' },
 ];
 
+const AUTO_PLAY_MS = 3800;
+
 const CONTAINER_WIDTH = 1440;
 const CARD_WIDTH = 400;
-const CARD_HEIGHT = 430;
+const CARD_HEIGHT = 480;
+const INNER_CARD_HEIGHT = 520;
+const OUTER_CARD_HEIGHT = 520;
 const OUTER_SCALE = 0.76;
 const INNER_SCALE = 0.9;
 const EDGE_INSET = 8;
@@ -24,6 +28,18 @@ const EDGE_INSET = 8;
 const OUTER_STEP =
   CONTAINER_WIDTH / 2 - EDGE_INSET - (CARD_WIDTH * OUTER_SCALE) / 2;
 const INNER_STEP = OUTER_STEP * 0.54;
+
+function getWrappedOffset(index, activeIndex, total) {
+  let offset = index - activeIndex;
+
+  if (offset > total / 2) {
+    offset -= total;
+  } else if (offset < -total / 2) {
+    offset += total;
+  }
+
+  return offset;
+}
 
 function getTranslateX(offset) {
   if (offset === 0) return 0;
@@ -33,6 +49,14 @@ function getTranslateX(offset) {
 
   if (absOffset === 1) return sign * INNER_STEP;
   return sign * OUTER_STEP;
+}
+
+function getCardHeight(offset) {
+  const absOffset = Math.abs(offset);
+
+  if (absOffset === 0) return CARD_HEIGHT;
+  if (absOffset === 1) return INNER_CARD_HEIGHT;
+  return OUTER_CARD_HEIGHT;
 }
 
 function getSlideStyle(offset) {
@@ -49,17 +73,17 @@ function getSlideStyle(offset) {
   }
 
   const sign = Math.sign(offset);
-  const rotateY =
-    absOffset === 1 ? sign * 30 : sign * 44;
+  const rotateY = absOffset === 1 ? sign * -42 : sign * -58;
+  const rotateX = absOffset === 0 ? 0 : sign * -4;
   const scale = offset === 0 ? 1 : absOffset === 1 ? INNER_SCALE : OUTER_SCALE;
   const translateX = getTranslateX(offset);
-  const translateZ = offset === 0 ? 65 : -absOffset * 58;
-  const translateY = -absOffset * 8;
+  const translateZ = offset === 0 ? 84 : -absOffset * 82;
+  const translateY = -absOffset * 14;
 
   return {
-    opacity: absOffset === 2 ? 0.92 : 1,
+    opacity: absOffset === 2 ? 0.9 : 1,
     pointerEvents: 'auto',
-    transform: `translateX(calc(-50% + ${translateX}px)) translateY(${translateY}px) translateZ(${translateZ}px) rotateY(${rotateY}deg) scale(${scale})`,
+    transform: `translateX(calc(-50% + ${translateX}px)) translateY(${translateY}px) translateZ(${translateZ}px) rotateY(${rotateY}deg) rotateX(${rotateX}deg) scale(${scale})`,
     zIndex: 10 - absOffset,
   };
 }
@@ -81,14 +105,42 @@ function NavButton({ direction, onClick, className = '' }) {
 
 export default function SingleProductCarousel() {
   const [activeIndex, setActiveIndex] = useState(2);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
 
   const goPrev = () => {
+    setIsPaused(true);
     setActiveIndex((index) => (index - 1 + SLIDES.length) % SLIDES.length);
   };
 
   const goNext = () => {
+    setIsPaused(true);
     setActiveIndex((index) => (index + 1) % SLIDES.length);
   };
+
+  useEffect(() => {
+    if (isHovered || isPaused) {
+      return undefined;
+    }
+
+    const timer = window.setInterval(() => {
+      setActiveIndex((index) => (index + 1) % SLIDES.length);
+    }, AUTO_PLAY_MS);
+
+    return () => window.clearInterval(timer);
+  }, [isHovered, isPaused]);
+
+  useEffect(() => {
+    if (!isPaused) {
+      return undefined;
+    }
+
+    const timer = window.setTimeout(() => {
+      setIsPaused(false);
+    }, AUTO_PLAY_MS * 2);
+
+    return () => window.clearTimeout(timer);
+  }, [isPaused, activeIndex]);
 
   return (
     <section
@@ -100,15 +152,17 @@ export default function SingleProductCarousel() {
       </h2>
 
       <div
-        className="relative mt-[85px] mx-auto flex h-[450px] w-[1440px] items-end justify-center overflow-visible"
-        style={{ perspective: '3000px', perspectiveOrigin: '50% 80%' }}
+        className="relative mx-auto mt-[85px] flex h-[540px] w-[1440px] items-end justify-center overflow-visible"
+        style={{ perspective: '2400px', perspectiveOrigin: '50% 84%' }}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
       >
         <div
           className="relative h-full w-[1440px]"
           style={{ transformStyle: 'preserve-3d' }}
         >
           {SLIDES.map((slide, index) => {
-            const offset = index - activeIndex;
+            const offset = getWrappedOffset(index, activeIndex, SLIDES.length);
             const style = getSlideStyle(offset);
             const isActive = offset === 0;
 
@@ -119,7 +173,7 @@ export default function SingleProductCarousel() {
                 style={{
                   ...style,
                   width: CARD_WIDTH,
-                  height: CARD_HEIGHT,
+                  height: getCardHeight(offset),
                   transformOrigin: 'center bottom',
                 }}
               >
@@ -129,7 +183,7 @@ export default function SingleProductCarousel() {
                   src={slide.image}
                 />
 
-                <div className="absolute inset-x-0 bottom-0 px-4 pb-7 pt-24">
+                <div className="absolute inset-x-0 bottom-0 px-4 pb-8 pt-28">
                   <div className="mx-auto mb-2.5 h-px w-[72px] bg-white" />
                   <p className="text-center font-['Kanit:Light'] text-[13px] uppercase tracking-[0.24em] text-white">
                     {slide.label}
@@ -162,7 +216,7 @@ export default function SingleProductCarousel() {
         />
       </div>
 
-      <p className="mt-10 text-center font-['Kanit:Regular'] text-[13px] uppercase tracking-[0.14em] text-[#201a14]">
+      <p className="mt-12 text-center font-['Kanit:Regular'] text-[13px] uppercase tracking-[0.14em] text-[#201a14]">
         22KT Fine Gold
       </p>
     </section>
