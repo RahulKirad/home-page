@@ -1,75 +1,11 @@
-import { useEffect, useState } from 'react';
-import {
-  bannerFrames,
-  BANNER_FRAME_COUNT,
-} from '../assets/bannerFrames';
-import {
-  BANNER_HEIGHT,
-  BANNER_TOP,
-  getBannerScrollDistance,
-} from '../constants/banner';
+import { bannerFrames } from '../assets/bannerFrames';
+import { BANNER_HEIGHT, STATS_BAR_HEIGHT } from '../constants/banner';
+import HeroStatsBar from './HeroStatsBar';
+import './banner-copy.css';
 
-export default function ScrollBanner({ className = '' }) {
-  const [frameIndex, setFrameIndex] = useState(0);
-
-  useEffect(() => {
-    bannerFrames.forEach((src) => {
-      const image = new Image();
-      image.src = src;
-    });
-  }, []);
-
-  useEffect(() => {
-    let frameId = 0;
-
-    const update = () => {
-      const scrollDistance = getBannerScrollDistance();
-      const scrollY = window.scrollY;
-      const offset = Math.min(scrollY, scrollDistance);
-      const progress = scrollDistance > 0 ? offset / scrollDistance : 0;
-      const nextFrame = Math.min(
-        Math.floor(progress * (BANNER_FRAME_COUNT - 1)),
-        BANNER_FRAME_COUNT - 1,
-      );
-
-      setFrameIndex(nextFrame);
-      document.documentElement.style.setProperty(
-        '--banner-scroll-offset',
-        `${offset}px`,
-      );
-      document.documentElement.style.setProperty(
-        '--banner-height',
-        `${BANNER_HEIGHT}px`,
-      );
-    };
-
-    const onScroll = () => {
-      cancelAnimationFrame(frameId);
-      frameId = requestAnimationFrame(update);
-    };
-
-    update();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
-
-    return () => {
-      cancelAnimationFrame(frameId);
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onScroll);
-      document.documentElement.style.removeProperty('--banner-scroll-offset');
-      document.documentElement.style.removeProperty('--banner-height');
-    };
-  }, []);
-
+function BannerContent({ frameIndex, scrollProgress, isAnimationComplete }) {
   return (
-    <div
-      className={`absolute left-0 z-30 w-[1440px] overflow-hidden ${className}`}
-      data-name="Scroll Banner"
-      style={{
-        top: BANNER_TOP,
-        height: BANNER_HEIGHT,
-      }}
-    >
+    <>
       <div className="absolute inset-0 overflow-hidden">
         <img
           alt=""
@@ -79,22 +15,113 @@ export default function ScrollBanner({ className = '' }) {
         />
       </div>
 
-      <div className="absolute inset-0 z-10 flex flex-col items-start justify-center pl-[106px] text-left pointer-events-none">
-        <h1 className="font-['Playfair_Display:Regular'] text-[56px] font-normal leading-[1.05] text-white drop-shadow-[0_2px_16px_rgba(0,0,0,0.35)]">
-          Transparent
-          <br />
-          Wastage
-        </h1>
-        <p className="mt-4 font-['Kanit:Light'] text-[18px] leading-normal text-white drop-shadow-[0_1px_8px_rgba(0,0,0,0.3)]">
-          No Hidden Charges
-        </p>
-        <button
-          type="button"
-          className="pointer-events-auto mt-8 cursor-pointer rounded-[8px] bg-[rgba(255,250,237,0.92)] px-9 py-3 font-['Kanit:Medium'] text-[14px] tracking-[0.08em] text-[#8a6d4c] uppercase transition-opacity hover:opacity-90"
-        >
-          Order Today
-        </button>
+      <div className="banner-copy">
+        <div className="banner-copy-inner">
+          <h1 className="banner-copy-title">
+            <span className="banner-copy-line">Transparent</span>
+            <span className="banner-copy-line">Wastage</span>
+          </h1>
+
+          <div className="banner-copy-badge">
+            <span className="banner-copy-badge__icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M9 1.5L9.75 5.25L13.5 6L9.75 6.75L9 10.5L8.25 6.75L4.5 6L8.25 5.25L9 1.5Z"
+                  fill="currentColor"
+                />
+                <path
+                  d="M14.25 9.75L14.625 11.625L16.5 12L14.625 12.375L14.25 14.25L13.875 12.375L12 12L13.875 11.625L14.25 9.75Z"
+                  fill="currentColor"
+                />
+                <path
+                  d="M3.75 10.5L4.125 12.375L6 12.75L4.125 13.125L3.75 15L3.375 13.125L1.5 12.75L3.375 12.375L3.75 10.5Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+            <span className="banner-copy-badge__text">No Hidden Charges</span>
+          </div>
+
+          <div className="banner-copy-actions">
+            <button type="button" className="banner-copy-cta banner-copy-cta--primary">
+              Order Today
+            </button>
+            <button type="button" className="banner-copy-cta banner-copy-cta--secondary">
+              View Products
+            </button>
+          </div>
+        </div>
       </div>
+
+      <div
+        className="absolute inset-x-0 bottom-0 z-20"
+        aria-hidden={isAnimationComplete}
+        role="progressbar"
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-valuenow={Math.round(scrollProgress * 100)}
+        aria-label="Banner scroll progress"
+      >
+        <div className="h-[3px] w-full bg-white/20">
+          <div
+            className="banner-progress-fill h-full origin-left bg-[#c9a84c] shadow-[0_0_12px_rgba(201,168,76,0.55)]"
+            style={{ width: `${scrollProgress * 100}%` }}
+          />
+        </div>
+      </div>
+    </>
+  );
+}
+
+function BannerShell({ frameIndex, scrollProgress, isAnimationComplete, className = '' }) {
+  return (
+    <div
+      className={`relative w-full max-w-[1440px] overflow-hidden bg-[#201a14] ${className}`}
+      data-name="Scroll Banner"
+      style={{ height: BANNER_HEIGHT + STATS_BAR_HEIGHT }}
+    >
+      <div className="relative w-full overflow-hidden" style={{ height: BANNER_HEIGHT }}>
+        <BannerContent
+          frameIndex={frameIndex}
+          isAnimationComplete={isAnimationComplete}
+          scrollProgress={scrollProgress}
+        />
+      </div>
+      <HeroStatsBar />
+    </div>
+  );
+}
+
+export default function ScrollBanner({
+  frameIndex,
+  scrollProgress,
+  isAnimationComplete,
+  className = '',
+}) {
+  if (!isAnimationComplete) {
+    return (
+      <div
+        className="banner-hero-fixed fixed inset-x-0 z-30 flex justify-center"
+        style={{ top: 'var(--site-header-height, 175px)' }}
+      >
+        <BannerShell
+          className={className}
+          frameIndex={frameIndex}
+          isAnimationComplete={isAnimationComplete}
+          scrollProgress={scrollProgress}
+        />
+      </div>
+    );
+  }
+
+  return (
+    <div className="banner-hero-settled relative z-30 flex w-full justify-center">
+      <BannerShell
+        className={className}
+        frameIndex={frameIndex}
+        isAnimationComplete={isAnimationComplete}
+        scrollProgress={scrollProgress}
+      />
     </div>
   );
 }

@@ -1,8 +1,10 @@
-import ScrollBanner from '../components/ScrollBanner.jsx';
+import BannerHeroSection from '../components/BannerHeroSection.jsx';
+import SiteHeader from '../components/SiteHeader.jsx';
 import SingleProductCarousel from '../components/SingleProductCarousel.jsx';
+import TrendingJewelleryCarousel from '../components/TrendingJewelleryCarousel.jsx';
+import ShopBySellerCarousel from '../components/ShopBySellerCarousel.jsx';
 
 const imgRectangle365 = new URL('../assets/imgRectangle365.png', import.meta.url).href;
-const imgRectangle310 = new URL('../assets/imgRectangle310.png', import.meta.url).href;
 const imgRectangle293 = new URL('../assets/imgRectangle293.png', import.meta.url).href;
 const imgRectangle295 = new URL('../assets/imgRectangle295.png', import.meta.url).href;
 const imgRectangle297 = new URL('../assets/imgRectangle297.png', import.meta.url).href;
@@ -25,6 +27,8 @@ const imgRectangle25 = new URL('../assets/imgRectangle25.png', import.meta.url).
 const imgRectangle26 = new URL('../assets/imgRectangle26.png', import.meta.url).href;
 const imgRectangle27 = new URL('../assets/imgRectangle27.png', import.meta.url).href;
 const imgRectangle28 = new URL('../assets/imgRectangle28.png', import.meta.url).href;
+const videoGold9k = new URL('../assets/PixVerse_V6_Image_Text_540P_A_luxury_macro_pro (1).mp4', import.meta.url).href;
+const videoGoldStandard = new URL('../assets/PixVerse_V6_Image_Text_540P_A_luxury_macro_pro.mp4', import.meta.url).href;
 const imgLogonew12 = new URL('../assets/imgLogonew12.png', import.meta.url).href;
 const imgGoldenCrownForKingAndQueenAndSuccessOnTransparentBackgroundFreePng1 = new URL('../assets/imgGoldenCrownForKingAndQueenAndSuccessOnTransparentBackgroundFreePng1.png', import.meta.url).href;
 const imgRectangle303 = new URL('../assets/imgRectangle303.png', import.meta.url).href;
@@ -41,13 +45,10 @@ const imgVector = new URL('../assets/imgVector.png', import.meta.url).href;
 const imgVector10 = new URL('../assets/imgVector10.png', import.meta.url).href;
 const imgVector9 = new URL('../assets/imgVector9.png', import.meta.url).href;
 const imgEllipse67 = new URL('../assets/imgEllipse67.png', import.meta.url).href;
-const imgSearchNormal = new URL('../assets/imgSearchNormal.png', import.meta.url).href;
-const imgGroup = new URL('../assets/imgGroup.png', import.meta.url).href;
 const imgGroup25973 = new URL('../assets/imgGroup25973.png', import.meta.url).href;
 const imgGroup25974 = new URL('../assets/imgGroup25974.png', import.meta.url).href;
 const imgGroup25975 = new URL('../assets/imgGroup25975.png', import.meta.url).href;
 const imgVector1 = new URL('../assets/imgVector1.png', import.meta.url).href;
-const imgEllipse71 = new URL('../assets/imgEllipse71.png', import.meta.url).href;
 const imgVector2 = new URL('../assets/imgVector2.png', import.meta.url).href;
 const imgQrCodeForMobileEnglishWikipedia11 = new URL('../assets/imgQrCodeForMobileEnglishWikipedia11.png', import.meta.url).href;
 const imgBuyer1 = new URL('../assets/imgBuyer1.png', import.meta.url).href;
@@ -64,6 +65,20 @@ const imgGroup26006 = new URL('../assets/imgGroup26006.png', import.meta.url).hr
 const imgEllipse104 = new URL('../assets/imgEllipse104.png', import.meta.url).href;
 const imgVector41 = new URL('../assets/imgVector41.png', import.meta.url).href;
 const imgVector42 = new URL('../assets/imgVector42.png', import.meta.url).href;
+
+function GoldCardVideo({ src, className = '' }) {
+  return (
+    <video
+      autoPlay
+      loop
+      muted
+      playsInline
+      className={`absolute inset-0 size-full origin-center scale-[0.88] object-cover pointer-events-none rounded-tl-[23px] rounded-tr-[23px] ${className}`.trim()}
+    >
+      <source src={src} type="video/mp4" />
+    </video>
+  );
+}
 
 function Rectangle365Default({ className = "" }) {
   return (
@@ -88,25 +103,29 @@ function Component3({ className = "" }) {
 
 export default function HomePage() {
   return (
-    <div className="home-page-root mx-auto bg-white relative w-[1440px] min-h-[calc(8626px+200vh-580px)]" data-node-id="1:2" data-name="Home Page">
+    <>
+      <SiteHeader />
+      <div className="home-page-root mx-auto relative w-full max-w-[1440px] min-h-[8626px]" data-node-id="1:2" data-name="Home Page">
+        <BannerHeroSection />
+        <div className="home-page-content absolute top-0 left-0 w-full max-w-[1440px]">
       <div className="-translate-x-1/2 absolute bg-[#201a14] h-[408px] left-[calc(50%+2.5px)] top-[6520px] w-[1279px]" data-node-id="5:110" />
       <div className="absolute bg-[#37332f] border border-[#c9a84c] border-solid h-[96px] left-[354px] rounded-[13px] top-[6668px] w-[733px]" data-node-id="5:114" />
       <div className="absolute bg-[#37332f] border border-[#c9a84c] border-solid h-[96px] left-[353px] rounded-[13px] top-[6787px] w-[733px]" data-node-id="130:26" />
-      <div className="absolute bg-[#f4eedb] border border-[#c9a84c] border-solid h-[94px] left-[120px] rounded-bl-[23px] rounded-br-[23px] top-[1018px] w-[267px]" data-node-id="37:118" />
-      <div className="absolute bg-[#f4eedb] border border-[#c9a84c] border-solid h-[94px] left-[742px] rounded-bl-[23px] rounded-br-[23px] top-[1022px] w-[267px]" data-node-id="38:30" />
-      <div className="absolute bg-[#f4eedb] border border-[#c9a84c] border-solid h-[94px] left-[431px] rounded-bl-[23px] rounded-br-[23px] top-[1022px] w-[267px]" data-node-id="38:25" />
-      <div className="absolute bg-[#f4eedb] border border-[#c9a84c] border-solid h-[94px] left-[1053px] rounded-bl-[23px] rounded-br-[23px] top-[1026px] w-[267px]" data-node-id="38:31" />
-      <div className="absolute border border-[#c9a84c] border-solid h-[212px] left-[120px] rounded-tl-[23px] rounded-tr-[23px] top-[840px] w-[267px]" data-node-id="38:16">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[23px] rounded-tr-[23px] size-full" src={imgRectangle310} />
+      <div className="absolute bg-[#f4eedb] border border-[#c9a84c] border-solid h-[94px] left-[120px] rounded-bl-[23px] rounded-br-[23px] top-[1010px] w-[267px]" data-node-id="37:118" />
+      <div className="absolute bg-[#f4eedb] border border-[#c9a84c] border-solid h-[94px] left-[742px] rounded-bl-[23px] rounded-br-[23px] top-[1014px] w-[267px]" data-node-id="38:30" />
+      <div className="absolute bg-[#f4eedb] border border-[#c9a84c] border-solid h-[94px] left-[431px] rounded-bl-[23px] rounded-br-[23px] top-[1014px] w-[267px]" data-node-id="38:25" />
+      <div className="absolute bg-[#f4eedb] border border-[#c9a84c] border-solid h-[94px] left-[1053px] rounded-bl-[23px] rounded-br-[23px] top-[1018px] w-[267px]" data-node-id="38:31" />
+      <div className="absolute overflow-hidden border border-[#c9a84c] border-solid bg-[#201a14] h-[212px] left-[120px] rounded-tl-[23px] rounded-tr-[23px] top-[832px] w-[267px]" data-node-id="38:16">
+        <GoldCardVideo src={videoGold9k} />
       </div>
-      <div className="absolute border border-[#c9a84c] border-solid h-[212px] left-[742px] rounded-tl-[23px] rounded-tr-[23px] top-[844px] w-[267px]" data-node-id="38:32">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[23px] rounded-tr-[23px] size-full" src={imgRectangle310} />
+      <div className="absolute overflow-hidden border border-[#c9a84c] border-solid bg-[#201a14] h-[212px] left-[742px] rounded-tl-[23px] rounded-tr-[23px] top-[836px] w-[267px]" data-node-id="38:32">
+        <GoldCardVideo src={videoGoldStandard} />
       </div>
-      <div className="absolute border border-[#c9a84c] border-solid h-[212px] left-[431px] rounded-tl-[23px] rounded-tr-[23px] top-[844px] w-[267px]" data-node-id="38:26">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[23px] rounded-tr-[23px] size-full" src={imgRectangle310} />
+      <div className="absolute overflow-hidden border border-[#c9a84c] border-solid bg-[#201a14] h-[212px] left-[431px] rounded-tl-[23px] rounded-tr-[23px] top-[836px] w-[267px]" data-node-id="38:26">
+        <GoldCardVideo src={videoGoldStandard} />
       </div>
-      <div className="absolute border border-[#c9a84c] border-solid h-[212px] left-[1053px] rounded-tl-[23px] rounded-tr-[23px] top-[848px] w-[267px]" data-node-id="38:33">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[23px] rounded-tr-[23px] size-full" src={imgRectangle310} />
+      <div className="absolute overflow-hidden border border-[#c9a84c] border-solid bg-[#201a14] h-[212px] left-[1053px] rounded-tl-[23px] rounded-tr-[23px] top-[840px] w-[267px]" data-node-id="38:33">
+        <GoldCardVideo src={videoGoldStandard} />
       </div>
       <div className="absolute h-[220px] left-[80px] rounded-bl-[8px] rounded-tl-[8px] top-[7689px] w-[145px]" data-node-id="32:99">
         <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-bl-[8px] rounded-tl-[8px] size-full" src={imgRectangle293} />
@@ -120,30 +139,8 @@ export default function HomePage() {
       <div className="absolute border border-[#ac7d0c] border-solid h-[220px] left-[80px] rounded-[8px] top-[7689px] w-[406px]" data-node-id="32:98" />
       <div className="absolute bg-[#dcc685] h-[37px] left-[992px] rounded-[6px] top-[8348px] w-[137px]" data-node-id="29:38" />
       <div className="absolute bg-gradient-to-b from-[#c9a84c] h-[139px] left-[170px] rounded-[10px] to-[#fffaed] top-[8247px] w-[324px]" data-node-id="29:40" />
-      <div className="absolute bg-[#201a14] h-[40px] left-0 top-px w-[1440px]" data-node-id="1:3" />
       <div className="absolute bg-[#201a14] h-[40px] left-[-2px] top-[8500px] w-[1440px]" data-node-id="28:14" />
-      <p className="[word-break:break-word] absolute font-['Kanit:Regular'] leading-[0] left-[calc(50%-109px)] not-italic text-[14px] text-white top-[14px] w-[218px]" data-node-id="1:5">
-        <span className="leading-[14px]">{`SUBSCRIPTION Plan is `}</span>
-        <span className="font-['Kanit:SemiBold'] leading-[14px] text-[#ff4242]">Active Now</span>
-      </p>
-      <ScrollBanner />
-      <div className="absolute left-[1380px] size-[50px] top-[419px] z-40" data-node-id="38:107">
-        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse4} />
-      </div>
-      <div className="absolute left-[16px] size-[50px] top-[420px] z-40" data-node-id="38:104">
-        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse4} />
-      </div>
-      <div className="absolute flex inset-[4.74%_96.94%_95.11%_2.57%] items-center justify-center" data-node-id="38:105" style={{ containerType: "size" }}>
-        <div className="flex-none h-[100cqw] rotate-90 w-[100cqh]">
-          <div className="relative size-full" data-name="Vector">
-            <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgVector} />
-          </div>
-        </div>
-      </div>
-      <div className="absolute bg-[#201a14] h-[47px] left-[-1px] top-[755px] w-[1440px]" data-node-id="38:99" />
-      <p className="[word-break:break-word] absolute font-['Playfair_Display:Regular'] font-normal leading-[normal] left-[calc(50%-266px)] text-[#201a14] text-[40px] top-[1173px] whitespace-nowrap" data-node-id="5:39">
-        Trending Jewellery Collection
-      </p>
+      <TrendingJewelleryCarousel />
       <p className="[word-break:break-word] absolute font-['Playfair_Display:Regular'] font-normal leading-[normal] left-[calc(50%-137px)] text-[#201a14] text-[40px] top-[3968px] whitespace-nowrap" data-node-id="38:73">
         Bulk Products
       </p>
@@ -383,126 +380,18 @@ export default function HomePage() {
         Verified Buyer
       </p>
       <SingleProductCarousel />
-      <div className="absolute bg-white border-[#ac7d0c] border-[1.5px] border-solid h-[30px] left-[607px] rounded-[7px] top-[71px] w-[107px]" data-node-id="37:16" />
-      <div className="absolute bg-white h-[24px] left-[1329px] rounded-[3px] top-[9px] w-[81px]" data-node-id="37:17" />
-      <div className="absolute bg-[rgba(201,168,76,0.2)] h-[31px] left-0 top-[126px] w-[1440px]" data-node-id="37:18" />
-      <div className="-translate-x-1/2 absolute bg-white border-[#c9a84c] border-[0.5px] border-solid h-[46px] left-[calc(50%-352px)] rounded-[30px] top-[62px] w-[454px]" data-node-id="37:19" />
-      <div className="-translate-x-1/2 absolute bg-[#c9a84c] border-[#c9a84c] border-[0.5px] border-solid h-[46px] left-[calc(50%-556.5px)] rounded-bl-[30px] rounded-tl-[30px] top-[62px] w-[45px]" data-node-id="37:20" />
-      <p className="[word-break:break-word] absolute font-['Kanit:Light'] leading-[14px] left-[212px] not-italic text-[#7b7b7b] text-[14px] top-[78px] whitespace-nowrap" data-node-id="37:21">
-        Search by name or image
-      </p>
-      <div className="absolute left-[33px] size-[69px] top-[51px]" data-node-id="37:22" data-name="logonew1 2">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgLogonew12} />
-      </div>
-      <p className="[word-break:break-word] absolute font-['Kanit:Medium'] leading-[16px] left-[328px] not-italic text-[#ac7d0c] text-[16px] top-[134px] whitespace-nowrap" data-node-id="37:23">
-        Home
-      </p>
-      <a className="[word-break:break-word] absolute block cursor-pointer font-['Kanit:Regular'] leading-[0] left-[450px] not-italic text-[#151515] text-[16px] top-[134px] whitespace-nowrap" data-node-id="37:24">
-        <p className="leading-[16px]">Products</p>
-      </a>
-      <p className="[word-break:break-word] absolute font-['Kanit:Regular'] leading-[16px] left-[604px] not-italic text-[#151515] text-[16px] top-[134px] whitespace-nowrap" data-node-id="37:25">
-        Gallery
-      </p>
-      <p className="[word-break:break-word] absolute font-['Kanit:Medium'] leading-[16px] left-[617px] not-italic text-[#ac7d0c] text-[14px] top-[77px] whitespace-nowrap" data-node-id="37:27">
-        Custom Order
-      </p>
-      <p className="[word-break:break-word] absolute font-['Kanit:Regular'] leading-[16px] left-[1340px] not-italic text-[#151515] text-[12px] top-[13px] w-[51px]" data-node-id="37:28">
-        English
-      </p>
-      <p className="[word-break:break-word] absolute font-['Kanit:Regular'] leading-[16px] left-[746px] not-italic text-[#151515] text-[16px] top-[133px] whitespace-nowrap" data-node-id="37:29">
-        Blogs
-      </p>
-      <p className="[word-break:break-word] absolute font-['Kanit:Regular'] leading-[16px] left-[869px] not-italic text-[#151515] text-[16px] top-[133px] whitespace-nowrap" data-node-id="675:619">
-        Bulk Product
-      </p>
-      <p className="[word-break:break-word] absolute font-['Kanit:Regular'] leading-[16px] left-[1057px] not-italic text-[#151515] text-[16px] top-[132px] whitespace-nowrap" data-node-id="37:30">
-        More
-      </p>
-      <div className="absolute contents inset-[0.88%_87.93%_98.92%_10.9%]" data-node-id="37:31">
-        <div className="absolute contents inset-[0.88%_87.93%_98.92%_10.9%]" data-node-id="37:32" data-name="vuesax/linear/search-normal">
-          <div className="absolute inset-[0.88%_87.93%_98.92%_10.9%]" data-node-id="37:33" data-name="search-normal">
-            <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgSearchNormal} />
-          </div>
-        </div>
-      </div>
-      <div className="absolute inset-[0.88%_59.86%_98.91%_38.82%]" data-node-id="37:38" data-name="Group">
-        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup} />
-      </div>
-      <div className="absolute h-[33.319px] left-[1334px] top-[61px] w-[24px]" data-node-id="37:41">
-        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup25973} />
-      </div>
-      <div className="absolute h-[33.319px] left-[1290px] top-[61px] w-[24px]" data-node-id="37:44">
-        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup25974} />
-      </div>
-      <div className="absolute h-[33.319px] left-[1375px] top-[61px] w-[35px]" data-node-id="37:47">
-        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup25975} />
-      </div>
-      <div className="absolute inset-[1.62%_22.99%_98.32%_76.39%]" data-node-id="37:52" data-name="Vector">
-        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgVector1} />
-      </div>
-      <div className="absolute inset-[0.22%_2.85%_99.72%_96.53%]" data-node-id="37:53" data-name="Vector">
-        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgVector1} />
-      </div>
-      <Component3 className="absolute h-[28px] left-[1280px] top-[128px] w-[131px]" />
-      <p className="[word-break:break-word] absolute font-['Poppins:Bold'] leading-[normal] left-[215px] not-italic text-[20px] text-black top-[1065px] w-[78px]" data-node-id="38:19">
+      <p className="[word-break:break-word] absolute font-['Poppins:Bold'] leading-[normal] left-[215px] not-italic text-[20px] text-black top-[1057px] w-[78px]" data-node-id="38:19">
         9K Gold
       </p>
-      <p className="[word-break:break-word] absolute font-['Poppins:Bold'] leading-[normal] left-[830px] not-italic text-[20px] text-black top-[1069px] w-[91px]" data-node-id="38:34">
+      <p className="[word-break:break-word] absolute font-['Poppins:Bold'] leading-[normal] left-[830px] not-italic text-[20px] text-black top-[1061px] w-[91px]" data-node-id="38:34">
         20K Gold
       </p>
-      <p className="[word-break:break-word] absolute font-['Poppins:Bold'] leading-[normal] left-[521px] not-italic text-[20px] text-black top-[1069px] w-[87px]" data-node-id="38:27">
+      <p className="[word-break:break-word] absolute font-['Poppins:Bold'] leading-[normal] left-[521px] not-italic text-[20px] text-black top-[1061px] w-[87px]" data-node-id="38:27">
         18K Gold
       </p>
-      <p className="[word-break:break-word] absolute font-['Poppins:Bold'] leading-[normal] left-[1146px] not-italic text-[20px] text-black top-[1073px] w-[89px]" data-node-id="38:35">
+      <p className="[word-break:break-word] absolute font-['Poppins:Bold'] leading-[normal] left-[1146px] not-italic text-[20px] text-black top-[1065px] w-[89px]" data-node-id="38:35">
         22K Gold
       </p>
-      <div className="absolute left-[180px] size-[148px] top-[874px]" data-node-id="38:17">
-        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse71} />
-      </div>
-      <div className="absolute left-[802px] size-[148px] top-[878px]" data-node-id="38:36">
-        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse71} />
-      </div>
-      <div className="absolute left-[491px] size-[148px] top-[878px]" data-node-id="38:28">
-        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse71} />
-      </div>
-      <div className="absolute left-[1113px] size-[148px] top-[882px]" data-node-id="38:37">
-        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse71} />
-      </div>
-      <a className="absolute contents cursor-pointer left-[721px] top-[71px]" data-node-id="810:963">
-        <div className="absolute bg-black border-[#f2c848] border-[1.5px] border-solid h-[30px] left-[721px] rounded-[7px] top-[71px] w-[124px]" data-node-id="37:15" />
-        <p className="[word-break:break-word] absolute font-['Kanit:Regular'] leading-[16px] left-[758px] not-italic text-[#f2c848] text-[14px] top-[77px] whitespace-nowrap" data-node-id="37:26">
-          Subscription
-        </p>
-        <div className="absolute left-[726px] size-[29px] top-[71px]" data-node-id="38:40" data-name="golden-crown-for-king-and-queen-and-success-on-transparent-background-free-png 1">
-          <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgGoldenCrownForKingAndQueenAndSuccessOnTransparentBackgroundFreePng1} />
-        </div>
-      </a>
-      <p className="[word-break:break-word] absolute font-['Poppins:Regular'] leading-[normal] left-[calc(50%-614px)] not-italic text-[15px] text-white top-[767px] whitespace-nowrap" data-node-id="38:47">
-        India’s 1st B2B Gold Jewellery sourcing network
-      </p>
-      <p className="[word-break:break-word] absolute font-['Poppins:SemiBold'] leading-[0] left-[calc(50%+19px)] not-italic text-[15px] text-white top-[767px] whitespace-nowrap" data-node-id="38:100">
-        <span className="leading-[normal] text-[#fcdd53]">50K+</span>
-        <span className="leading-[normal]">{` CATEGORIES`}</span>
-      </p>
-      <p className="[word-break:break-word] absolute font-['Poppins:SemiBold'] leading-[0] left-[calc(50%+246px)] not-italic text-[15px] text-white top-[767px] whitespace-nowrap" data-node-id="38:101">
-        <span className="leading-[normal] text-[#fcdd53]">250+</span>
-        <span className="leading-[normal]">{` MANUFACTURER`}</span>
-      </p>
-      <p className="[word-break:break-word] absolute font-['Poppins:SemiBold'] leading-[0] left-[calc(50%+500px)] not-italic text-[15px] text-white top-[767px] whitespace-nowrap" data-node-id="38:102">
-        <span className="leading-[normal] text-[#fcdd53]">7K+</span>
-        <span className="leading-[normal]">{` RETAILERS`}</span>
-      </p>
-      <p className="[word-break:break-word] absolute font-['Poppins:SemiBold'] leading-[0] left-[calc(50%-178px)] not-italic text-[15px] text-white top-[767px] whitespace-nowrap" data-node-id="38:103">
-        <span className="leading-[normal] text-[#fcdd53]">30K+</span>
-        <span className="leading-[normal]">{` DESIGNS`}</span>
-      </p>
-      <div className="absolute flex inset-[4.72%_2.07%_95.13%_97.43%] items-center justify-center" data-node-id="38:109" style={{ containerType: "size" }}>
-        <div className="flex-none h-[hypot(97.6873cqw,0.681741cqh)] rotate-[-89.27deg] w-[hypot(2.3127cqw,-99.3183cqh)]">
-          <div className="relative size-full" data-name="Vector">
-            <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgVector2} />
-          </div>
-        </div>
-      </div>
       <div className="absolute h-[418px] left-[-7px] top-[6034px] w-[1454px]" data-node-id="38:67">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <img alt="" className="absolute h-[130.83%] left-[0.05%] max-w-none top-[-7.14%] w-full" src={imgRectangle303} />
@@ -1064,305 +953,12 @@ export default function HomePage() {
           </div>
         </div>
       </div>
-      <div className="absolute flex h-[354px] items-center justify-center left-[61px] top-[1273px] w-[241px]" data-node-id="214:401">
-        <div className="-scale-y-100 flex-none">
-          <div className="bg-white border border-[#f4eedb] border-solid h-[354px] relative rounded-[15px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] w-[241px]" />
-        </div>
-      </div>
-      <div className="absolute flex h-[307px] items-center justify-center left-[61px] top-[1774px] w-[241px]" data-node-id="214:402">
-        <div className="-scale-y-100 flex-none">
-          <div className="bg-white border border-[#f4eedb] border-solid h-[307px] relative rounded-[15px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] w-[241px]" />
-        </div>
-      </div>
-      <div className="absolute flex h-[354px] items-center justify-center left-[597px] top-[1272px] w-[241px]" data-node-id="214:403">
-        <div className="-scale-y-100 flex-none">
-          <div className="bg-white border border-[#f4eedb] border-solid h-[354px] relative rounded-[15px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] w-[241px]" />
-        </div>
-      </div>
-      <div className="absolute bg-[#f3ead5] border-[#ebdbb0] border-[0.5px] border-solid h-[25px] left-[613px] rounded-[3px] top-[1556px] w-[63px]" data-node-id="214:404" />
-      <p className="[word-break:break-word] absolute font-['Kanit:Medium'] leading-[16px] left-[622px] not-italic text-[#ac7d0c] text-[12px] top-[1561px] whitespace-nowrap" data-node-id="214:405">
-        Carat 22
-      </p>
-      <div className="absolute flex h-[308px] items-center justify-center left-[597px] top-[1773px] w-[241px]" data-node-id="214:406">
-        <div className="-scale-y-100 flex-none">
-          <div className="bg-white border border-[#f4eedb] border-solid h-[308px] relative rounded-[15px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] w-[241px]" />
-        </div>
-      </div>
-      <div className="absolute flex h-[354px] items-center justify-center left-[328px] top-[1274px] w-[241px]" data-node-id="214:407">
-        <div className="-scale-y-100 flex-none">
-          <div className="bg-white border border-[#f4eedb] border-solid h-[354px] relative rounded-[15px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] w-[241px]" />
-        </div>
-      </div>
-      <div className="absolute flex h-[306px] items-center justify-center left-[328px] top-[1775px] w-[241px]" data-node-id="214:408">
-        <div className="-scale-y-100 flex-none">
-          <div className="bg-white border border-[#f4eedb] border-solid h-[306px] relative rounded-[15px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] w-[241px]" />
-        </div>
-      </div>
-      <div className="absolute flex h-[354px] items-center justify-center left-[864px] top-[1273px] w-[241px]" data-node-id="214:409">
-        <div className="-scale-y-100 flex-none">
-          <div className="bg-white border border-[#f4eedb] border-solid h-[354px] relative rounded-[15px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] w-[241px]" />
-        </div>
-      </div>
-      <div className="absolute flex h-[307px] items-center justify-center left-[864px] top-[1774px] w-[241px]" data-node-id="214:410">
-        <div className="-scale-y-100 flex-none">
-          <div className="bg-white border border-[#f4eedb] border-solid h-[307px] relative rounded-[15px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] w-[241px]" />
-        </div>
-      </div>
-      <div className="absolute flex h-[354px] items-center justify-center left-[1132px] top-[1275px] w-[241px]" data-node-id="214:411">
-        <div className="-scale-y-100 flex-none">
-          <div className="bg-white border border-[#f4eedb] border-solid h-[354px] relative rounded-[15px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] w-[241px]" />
-        </div>
-      </div>
-      <div className="absolute flex h-[305px] items-center justify-center left-[1132px] top-[1776px] w-[241px]" data-node-id="214:412">
-        <div className="-scale-y-100 flex-none">
-          <div className="bg-white border border-[#f4eedb] border-solid h-[305px] relative rounded-[15px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] w-[241px]" />
-        </div>
-      </div>
-      <div className="absolute bg-[#f3ead5] border-[#ebdbb0] border-[0.5px] border-solid h-[25px] left-[77px] rounded-[3px] top-[1588px] w-[108px]" data-node-id="214:413" />
-      <div className="absolute bg-[#f3ead5] border-[#ebdbb0] border-[0.5px] border-solid h-[25px] left-[613px] rounded-[3px] top-[1587px] w-[108px]" data-node-id="214:414" />
-      <div className="absolute bg-[#f3ead5] border-[#ebdbb0] border-[0.5px] border-solid h-[25px] left-[344px] rounded-[3px] top-[1589px] w-[108px]" data-node-id="214:415" />
-      <div className="absolute bg-[#f3ead5] border-[#ebdbb0] border-[0.5px] border-solid h-[25px] left-[880px] rounded-[3px] top-[1588px] w-[108px]" data-node-id="214:416" />
-      <div className="absolute bg-[#f3ead5] border-[#ebdbb0] border-[0.5px] border-solid h-[25px] left-[1148px] rounded-[3px] top-[1590px] w-[108px]" data-node-id="214:417" />
-      <Rectangle365Default className="absolute h-[242px] left-[62px] top-[1274px] w-[241px]" />
-      <Rectangle365Default className="absolute h-[242px] left-[62px] top-[1775px] w-[241px]" />
-      <Rectangle365Default className="absolute h-[242px] left-[598px] top-[1273px] w-[241px]" />
-      <Rectangle365Default className="absolute h-[242px] left-[598px] top-[1774px] w-[241px]" />
-      <Rectangle365Default className="absolute h-[242px] left-[329px] top-[1275px] w-[241px]" />
-      <Rectangle365Default className="absolute h-[242px] left-[329px] top-[1776px] w-[241px]" />
-      <Rectangle365Default className="absolute h-[242px] left-[865px] top-[1274px] w-[241px]" />
-      <Rectangle365Default className="absolute h-[242px] left-[865px] top-[1775px] w-[241px]" />
-      <Rectangle365Default className="absolute h-[242px] left-[1133px] top-[1276px] w-[241px]" />
-      <Rectangle365Default className="absolute h-[242px] left-[1133px] top-[1777px] w-[241px]" />
-      <div className="absolute h-0 left-[134.5px] top-[1602.5px] w-[21px]" data-node-id="214:428">
-        <div className="absolute inset-[-0.75px_0]">
-          <img alt="" className="block max-w-none size-full" src={imgVector36} />
-        </div>
-      </div>
-      <div className="absolute h-0 left-[670.5px] top-[1601.5px] w-[21px]" data-node-id="214:429">
-        <div className="absolute inset-[-0.75px_0]">
-          <img alt="" className="block max-w-none size-full" src={imgVector36} />
-        </div>
-      </div>
-      <div className="absolute h-0 left-[401.5px] top-[1603.5px] w-[21px]" data-node-id="214:430">
-        <div className="absolute inset-[-0.75px_0]">
-          <img alt="" className="block max-w-none size-full" src={imgVector36} />
-        </div>
-      </div>
-      <div className="absolute h-0 left-[937.5px] top-[1602.5px] w-[21px]" data-node-id="214:431">
-        <div className="absolute inset-[-0.75px_0]">
-          <img alt="" className="block max-w-none size-full" src={imgVector36} />
-        </div>
-      </div>
-      <div className="absolute h-0 left-[1205.5px] top-[1604.5px] w-[21px]" data-node-id="214:432">
-        <div className="absolute inset-[-0.75px_0]">
-          <img alt="" className="block max-w-none size-full" src={imgVector36} />
-        </div>
-      </div>
-      <p className="[word-break:break-word] absolute font-['Playfair_Display:Regular'] font-normal leading-[16px] left-[77px] text-[14px] text-black top-[1526px] whitespace-nowrap" data-node-id="214:433">
-        Kalamani Padar Piece Ganthan
-      </p>
-      <p className="[word-break:break-word] absolute font-['Playfair_Display:Regular'] font-normal leading-[16px] left-[613px] text-[14px] text-black top-[1525px] whitespace-nowrap" data-node-id="214:434">
-        Kalamani Padar Piece Ganthan
-      </p>
-      <p className="[word-break:break-word] absolute font-['Playfair_Display:Regular'] font-normal leading-[16px] left-[344px] text-[14px] text-black top-[1527px] whitespace-nowrap" data-node-id="214:435">
-        Kalamani Padar Piece Ganthan
-      </p>
-      <p className="[word-break:break-word] absolute font-['Playfair_Display:Regular'] font-normal leading-[16px] left-[880px] text-[14px] text-black top-[1526px] whitespace-nowrap" data-node-id="214:436">
-        Kalamani Padar Piece Ganthan
-      </p>
-      <p className="[word-break:break-word] absolute font-['Playfair_Display:Regular'] font-normal leading-[16px] left-[1148px] text-[14px] text-black top-[1528px] whitespace-nowrap" data-node-id="214:437">
-        Kalamani Padar Piece Ganthan
-      </p>
-      <div className="absolute bg-[#f3ead5] border-[#ebdbb0] border-[0.5px] border-solid h-[25px] left-[147px] rounded-[3px] top-[1557px] w-[59px]" data-node-id="214:438" />
-      <div className="absolute bg-[#f3ead5] border-[#ebdbb0] border-[0.5px] border-solid h-[25px] left-[683px] rounded-[3px] top-[1556px] w-[59px]" data-node-id="214:439" />
-      <div className="absolute bg-[#f3ead5] border-[#ebdbb0] border-[0.5px] border-solid h-[25px] left-[414px] rounded-[3px] top-[1558px] w-[59px]" data-node-id="214:440" />
-      <div className="absolute bg-[#f3ead5] border-[#ebdbb0] border-[0.5px] border-solid h-[25px] left-[950px] rounded-[3px] top-[1557px] w-[59px]" data-node-id="214:441" />
-      <div className="absolute bg-[#f3ead5] border-[#ebdbb0] border-[0.5px] border-solid h-[25px] left-[1218px] rounded-[3px] top-[1559px] w-[59px]" data-node-id="214:442" />
-      <div className="absolute bg-[#f3ead5] border-[#ebdbb0] border-[0.5px] border-solid h-[25px] left-[77px] rounded-[3px] top-[1557px] w-[63px]" data-node-id="214:443" />
-      <div className="absolute bg-[#f3ead5] border-[#ebdbb0] border-[0.5px] border-solid h-[25px] left-[344px] rounded-[3px] top-[1557px] w-[63px]" data-node-id="214:444" />
-      <div className="absolute bg-[#f3ead5] border-[#ebdbb0] border-[0.5px] border-solid h-[25px] left-[880px] rounded-[3px] top-[1556px] w-[63px]" data-node-id="214:445" />
-      <div className="absolute bg-[#f3ead5] border-[#ebdbb0] border-[0.5px] border-solid h-[25px] left-[1148px] rounded-[3px] top-[1558px] w-[63px]" data-node-id="214:446" />
-      <p className="[word-break:break-word] absolute font-['Kanit:Medium'] leading-[16px] left-[86px] not-italic text-[#ac7d0c] text-[12px] top-[1562px] whitespace-nowrap" data-node-id="214:447">
-        Carat 22
-      </p>
-      <p className="[word-break:break-word] absolute font-['Kanit:Medium'] leading-[16px] left-[353px] not-italic text-[#ac7d0c] text-[12px] top-[1562px] whitespace-nowrap" data-node-id="214:448">
-        Carat 22
-      </p>
-      <p className="[word-break:break-word] absolute font-['Kanit:Medium'] leading-[16px] left-[889px] not-italic text-[#ac7d0c] text-[12px] top-[1561px] whitespace-nowrap" data-node-id="214:449">
-        Carat 22
-      </p>
-      <p className="[word-break:break-word] absolute font-['Kanit:Medium'] leading-[16px] left-[1157px] not-italic text-[#ac7d0c] text-[12px] top-[1563px] whitespace-nowrap" data-node-id="214:450">
-        Carat 22
-      </p>
-      <p className="[word-break:break-word] absolute font-['Kanit:Regular'] leading-[16px] left-[154px] not-italic text-[#7b7b7b] text-[12px] top-[1562px] whitespace-nowrap" data-node-id="214:451">
-        18.78 gm
-      </p>
-      <p className="[word-break:break-word] absolute font-['Kanit:Regular'] leading-[16px] left-[690px] not-italic text-[#7b7b7b] text-[12px] top-[1561px] whitespace-nowrap" data-node-id="214:452">
-        18.78 gm
-      </p>
-      <p className="[word-break:break-word] absolute font-['Kanit:Regular'] leading-[16px] left-[421px] not-italic text-[#7b7b7b] text-[12px] top-[1563px] whitespace-nowrap" data-node-id="214:453">
-        18.78 gm
-      </p>
-      <p className="[word-break:break-word] absolute font-['Kanit:Regular'] leading-[16px] left-[957px] not-italic text-[#7b7b7b] text-[12px] top-[1562px] whitespace-nowrap" data-node-id="214:454">
-        18.78 gm
-      </p>
-      <p className="[word-break:break-word] absolute font-['Kanit:Regular'] leading-[16px] left-[1225px] not-italic text-[#7b7b7b] text-[12px] top-[1564px] whitespace-nowrap" data-node-id="214:455">
-        18.78 gm
-      </p>
-      <p className="[word-break:break-word] absolute font-['Kanit:Regular'] leading-[0] left-[86px] not-italic text-[#7b7b7b] text-[12px] top-[1593px] whitespace-pre" data-node-id="214:456">
-        <span className="leading-[16px]">{`Wastage  `}</span>
-        <span className="leading-[16px] text-[#e00000]">{`4.0  `}</span>
-        <span className="leading-[16px] text-[#137a32]">3.0</span>
-      </p>
-      <p className="[word-break:break-word] absolute font-['Kanit:Regular'] leading-[0] left-[622px] not-italic text-[#7b7b7b] text-[12px] top-[1592px] whitespace-pre" data-node-id="214:457">
-        <span className="leading-[16px]">{`Wastage  `}</span>
-        <span className="leading-[16px] text-[#e00000]">{`4.0  `}</span>
-        <span className="leading-[16px] text-[#137a32]">3.0</span>
-      </p>
-      <p className="[word-break:break-word] absolute font-['Kanit:Regular'] leading-[0] left-[353px] not-italic text-[#7b7b7b] text-[12px] top-[1594px] whitespace-pre" data-node-id="214:458">
-        <span className="leading-[16px]">{`Wastage  `}</span>
-        <span className="leading-[16px] text-[#e00000]">{`4.0  `}</span>
-        <span className="leading-[16px] text-[#137a32]">3.0</span>
-      </p>
-      <p className="[word-break:break-word] absolute font-['Kanit:Regular'] leading-[0] left-[889px] not-italic text-[#7b7b7b] text-[12px] top-[1593px] whitespace-pre" data-node-id="214:459">
-        <span className="leading-[16px]">{`Wastage  `}</span>
-        <span className="leading-[16px] text-[#e00000]">{`4.0  `}</span>
-        <span className="leading-[16px] text-[#137a32]">3.0</span>
-      </p>
-      <p className="[word-break:break-word] absolute font-['Kanit:Regular'] leading-[0] left-[1157px] not-italic text-[#7b7b7b] text-[12px] top-[1595px] whitespace-pre" data-node-id="214:460">
-        <span className="leading-[16px]">{`Wastage  `}</span>
-        <span className="leading-[16px] text-[#e00000]">{`4.0  `}</span>
-        <span className="leading-[16px] text-[#137a32]">3.0</span>
-      </p>
-      <div className="absolute left-[253px] size-[37px] top-[1287px]" data-node-id="214:461">
-        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse99} />
-      </div>
-      <div className="absolute left-[253px] size-[37px] top-[1788px]" data-node-id="214:462">
-        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse99} />
-      </div>
-      <div className="absolute left-[789px] size-[37px] top-[1286px]" data-node-id="214:463">
-        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse99} />
-      </div>
-      <div className="absolute left-[789px] size-[37px] top-[1787px]" data-node-id="214:464">
-        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse99} />
-      </div>
-      <div className="absolute left-[520px] size-[37px] top-[1288px]" data-node-id="214:465">
-        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse99} />
-      </div>
-      <div className="absolute left-[520px] size-[37px] top-[1789px]" data-node-id="214:466">
-        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse99} />
-      </div>
-      <div className="absolute left-[1056px] size-[37px] top-[1287px]" data-node-id="214:467">
-        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse99} />
-      </div>
-      <div className="absolute left-[1056px] size-[37px] top-[1788px]" data-node-id="214:468">
-        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse99} />
-      </div>
-      <div className="absolute left-[1324px] size-[37px] top-[1289px]" data-node-id="214:469">
-        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse99} />
-      </div>
-      <div className="absolute left-[1324px] size-[37px] top-[1790px]" data-node-id="214:470">
-        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse99} />
-      </div>
-      <div className="absolute h-[19px] left-[265px] top-[1293px] w-[13.686px]" data-node-id="214:471">
-        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup26006} />
-      </div>
-      <div className="absolute h-[19px] left-[265px] top-[1794px] w-[13.686px]" data-node-id="214:474">
-        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup26006} />
-      </div>
-      <div className="absolute h-[19px] left-[801px] top-[1292px] w-[13.686px]" data-node-id="214:477">
-        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup26006} />
-      </div>
-      <div className="absolute h-[19px] left-[801px] top-[1793px] w-[13.686px]" data-node-id="214:480">
-        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup26006} />
-      </div>
-      <div className="absolute h-[19px] left-[532px] top-[1294px] w-[13.686px]" data-node-id="214:483">
-        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup26006} />
-      </div>
-      <div className="absolute h-[19px] left-[532px] top-[1795px] w-[13.686px]" data-node-id="214:486">
-        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup26006} />
-      </div>
-      <div className="absolute h-[19px] left-[1068px] top-[1293px] w-[13.686px]" data-node-id="214:489">
-        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup26006} />
-      </div>
-      <div className="absolute h-[19px] left-[1068px] top-[1794px] w-[13.686px]" data-node-id="214:492">
-        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup26006} />
-      </div>
-      <div className="absolute h-[19px] left-[1336px] top-[1295px] w-[13.686px]" data-node-id="214:495">
-        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup26006} />
-      </div>
-      <div className="absolute h-[19px] left-[1336px] top-[1796px] w-[13.686px]" data-node-id="214:498">
-        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup26006} />
-      </div>
-      <p className="[word-break:break-word] absolute font-['Playfair_Display:Regular'] font-normal leading-[normal] left-[calc(50%-142px)] text-[#201a14] text-[40px] top-[1678px] whitespace-nowrap" data-node-id="214:501">
-        Shop By Seller
-      </p>
-      <div className="absolute left-[1364px] size-[28px] top-[1386px]" data-node-id="214:502">
-        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse104} />
-      </div>
-      <div className="absolute left-[1364px] size-[28px] top-[1887px]" data-node-id="214:503">
-        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse104} />
-      </div>
-      <div className="absolute flex h-[13.114px] items-center justify-center left-[1375px] top-[1393px] w-[5.779px]" data-node-id="214:504">
-        <div className="flex-none rotate-[90.68deg]">
-          <div className="h-[5.626px] relative w-[13.049px]">
-            <div className="absolute inset-[-23.47%_-4.95%_-13.56%_-5.06%]">
-              <img alt="" className="block max-w-none size-full" src={imgVector41} />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="absolute flex h-[13.114px] items-center justify-center left-[1375px] top-[1894px] w-[5.779px]" data-node-id="214:505">
-        <div className="flex-none rotate-[90.68deg]">
-          <div className="h-[5.626px] relative w-[13.049px]">
-            <div className="absolute inset-[-23.47%_-4.95%_-13.56%_-5.06%]">
-              <img alt="" className="block max-w-none size-full" src={imgVector41} />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="absolute left-[44px] size-[28px] top-[1386px]" data-node-id="214:506">
-        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse104} />
-      </div>
-      <div className="absolute left-[44px] size-[28px] top-[1887px]" data-node-id="214:507">
-        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse104} />
-      </div>
-      <div className="absolute flex h-[13.184px] items-center justify-center left-[55px] top-[1393px] w-[5.948px]" data-node-id="214:508">
-        <div className="flex-none rotate-[-91.42deg]">
-          <div className="h-[5.626px] relative w-[13.049px]">
-            <div className="absolute inset-[-23.47%_-4.95%_-13.56%_-5.06%]">
-              <img alt="" className="block max-w-none size-full" src={imgVector42} />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="absolute flex h-[13.184px] items-center justify-center left-[55px] top-[1894px] w-[5.948px]" data-node-id="214:509">
-        <div className="flex-none rotate-[-91.42deg]">
-          <div className="h-[5.626px] relative w-[13.049px]">
-            <div className="absolute inset-[-23.47%_-4.95%_-13.56%_-5.06%]">
-              <img alt="" className="block max-w-none size-full" src={imgVector42} />
-            </div>
-          </div>
-        </div>
-      </div>
-      <p className="[word-break:break-word] absolute font-['Inter:Medium'] font-medium leading-[normal] left-[129px] not-italic text-[24px] text-black top-[2034px] whitespace-nowrap" data-node-id="214:510">
-        SL1493
-      </p>
-      <p className="[word-break:break-word] absolute font-['Inter:Medium'] font-medium leading-[normal] left-[402px] not-italic text-[24px] text-black top-[2034px] whitespace-nowrap" data-node-id="214:511">
-        SL1493
-      </p>
-      <p className="[word-break:break-word] absolute font-['Inter:Medium'] font-medium leading-[normal] left-[675px] not-italic text-[24px] text-black top-[2034px] whitespace-nowrap" data-node-id="214:512">
-        SL1493
-      </p>
-      <p className="[word-break:break-word] absolute font-['Inter:Medium'] font-medium leading-[normal] left-[944px] not-italic text-[24px] text-black top-[2034px] whitespace-nowrap" data-node-id="214:513">
-        SL1493
-      </p>
-      <p className="[word-break:break-word] absolute font-['Inter:Medium'] font-medium leading-[normal] left-[1213px] not-italic text-[24px] text-black top-[2034px] whitespace-nowrap" data-node-id="214:514">
-        SL1493
-      </p>
+      <ShopBySellerCarousel />
       <p className="[word-break:break-word] absolute font-['Inter:Italic'] font-normal italic leading-[normal] left-[calc(50%+498px)] text-[#7b7b7b] text-[11px] top-[7742px] w-[74px]" data-node-id="32:133">
         Verified Buyer
       </p>
-    </div>
+        </div>
+      </div>
+    </>
   );
 }

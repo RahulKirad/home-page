@@ -14,9 +14,26 @@ const SLIDES = [
   { id: 'traditional', image: imgRectangle28, label: 'Traditional' },
 ];
 
-const CARD_WIDTH = 520;
-const CARD_HEIGHT = 610;
-const CARD_STEP = CARD_WIDTH * 0.59;
+const CONTAINER_WIDTH = 1440;
+const CARD_WIDTH = 400;
+const CARD_HEIGHT = 430;
+const OUTER_SCALE = 0.76;
+const INNER_SCALE = 0.9;
+const EDGE_INSET = 8;
+
+const OUTER_STEP =
+  CONTAINER_WIDTH / 2 - EDGE_INSET - (CARD_WIDTH * OUTER_SCALE) / 2;
+const INNER_STEP = OUTER_STEP * 0.54;
+
+function getTranslateX(offset) {
+  if (offset === 0) return 0;
+
+  const sign = Math.sign(offset);
+  const absOffset = Math.abs(offset);
+
+  if (absOffset === 1) return sign * INNER_STEP;
+  return sign * OUTER_STEP;
+}
 
 function getSlideStyle(offset) {
   const absOffset = Math.abs(offset);
@@ -31,11 +48,13 @@ function getSlideStyle(offset) {
     };
   }
 
-  const rotateY = offset * -48;
-  const scale = offset === 0 ? 1 : absOffset === 1 ? 0.87 : 0.74;
-  const translateX = offset * CARD_STEP;
-  const translateZ = offset === 0 ? 160 : -absOffset * 110;
-  const translateY = -absOffset * 20;
+  const sign = Math.sign(offset);
+  const rotateY =
+    absOffset === 1 ? sign * 30 : sign * 44;
+  const scale = offset === 0 ? 1 : absOffset === 1 ? INNER_SCALE : OUTER_SCALE;
+  const translateX = getTranslateX(offset);
+  const translateZ = offset === 0 ? 65 : -absOffset * 58;
+  const translateY = -absOffset * 8;
 
   return {
     opacity: absOffset === 2 ? 0.92 : 1,
@@ -81,11 +100,11 @@ export default function SingleProductCarousel() {
       </h2>
 
       <div
-        className="relative mt-[85px] flex h-[630px] w-full items-end justify-center overflow-visible"
-        style={{ perspective: '2200px' }}
+        className="relative mt-[85px] mx-auto flex h-[450px] w-[1440px] items-end justify-center overflow-visible"
+        style={{ perspective: '3000px', perspectiveOrigin: '50% 80%' }}
       >
         <div
-          className="relative h-full w-full"
+          className="relative h-full w-[1440px]"
           style={{ transformStyle: 'preserve-3d' }}
         >
           {SLIDES.map((slide, index) => {
@@ -96,7 +115,7 @@ export default function SingleProductCarousel() {
             return (
               <article
                 key={slide.id}
-                className="absolute bottom-0 left-1/2 overflow-hidden bg-[#f3f3f3] transition-all duration-500 ease-out"
+                className="absolute bottom-0 left-[720px] overflow-hidden bg-[#f3f3f3] transition-all duration-500 ease-out"
                 style={{
                   ...style,
                   width: CARD_WIDTH,

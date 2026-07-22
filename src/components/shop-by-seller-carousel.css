@@ -1,0 +1,243 @@
+.shop-by-seller {
+  position: absolute;
+  left: 0;
+  top: 1678px;
+  width: 1440px;
+}
+
+.shop-by-seller__title {
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: normal;
+  text-align: center;
+  color: #201a14;
+}
+
+.shop-by-seller__grid {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 52px;
+  padding: 0 24px 12px;
+}
+
+.seller-card {
+  flex-shrink: 0;
+  width: 248px;
+  border-radius: 22px;
+  overflow: hidden;
+  background: #201a14;
+  box-shadow: 0 14px 32px rgba(32, 26, 20, 0.14);
+  cursor: pointer;
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s ease;
+}
+
+.seller-card:hover {
+  transform: translateY(-10px) rotate(-0.4deg);
+  box-shadow: 0 24px 48px rgba(32, 26, 20, 0.22);
+}
+
+.seller-card__visual {
+  position: relative;
+  height: 168px;
+  overflow: hidden;
+}
+
+.seller-card__hero {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.55s ease;
+}
+
+.seller-card:hover .seller-card__hero {
+  transform: scale(1.1);
+}
+
+.seller-card__visual-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(32, 26, 20, 0.05) 0%,
+    rgba(32, 26, 20, 0.55) 68%,
+    rgba(32, 26, 20, 0.92) 100%
+  );
+}
+
+.seller-card__tag {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  font-family: 'Kanit', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6b3f2e;
+}
+
+.seller-card__profile {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.seller-card__avatar-ring {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  padding: 2px;
+  border: 1.5px solid #c9a84c;
+  border-radius: 999px;
+  background: #201a14;
+}
+
+.seller-card__avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 999px;
+  object-fit: cover;
+}
+
+.seller-card__profile-text {
+  min-width: 0;
+}
+
+.seller-card__name {
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+  font-size: 14px;
+  line-height: 1.2;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.seller-card__location {
+  margin: 2px 0 0;
+  font-family: 'Kanit', sans-serif;
+  font-size: 11px;
+  line-height: 1.2;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.seller-card__panel {
+  padding: 14px 16px 16px;
+  background: linear-gradient(180deg, #2a221b 0%, #201a14 100%);
+}
+
+.seller-card__panel-top {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.seller-card__code {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  color: #e8dbb5;
+}
+
+.seller-card__rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: 'Kanit', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #f2c848;
+}
+
+.seller-card__rating-star {
+  font-size: 12px;
+}
+
+.seller-card__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.seller-card__chip {
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  font-family: 'Kanit', sans-serif;
+  font-size: 11px;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.seller-card__chip--gold {
+  border: 1px solid rgba(201, 168, 76, 0.45);
+  background: rgba(201, 168, 76, 0.12);
+  color: #e8dbb5;
+}
+
+.seller-card__action {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0.65rem 1rem;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #c9a84c 0%, #e8dbb5 100%);
+  font-family: 'Kanit', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #3d2a1f;
+  cursor: pointer;
+  transition:
+    transform 0.25s ease,
+    filter 0.25s ease;
+}
+
+.seller-card__action:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
+
+.seller-card__action-arrow {
+  transition: transform 0.25s ease;
+}
+
+.seller-card:hover .seller-card__action-arrow {
+  transform: translateX(4px);
+}
+
+@media (max-width: 1280px) {
+  .shop-by-seller__grid {
+    justify-content: flex-start;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+  }
+
+  .seller-card {
+    scroll-snap-align: start;
+  }
+}
