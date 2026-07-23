@@ -1,7 +1,12 @@
+import { useCallback, useRef } from 'react';
 import './shop-by-seller-carousel.css';
 
 const imgSellerLogo = new URL('../assets/imgLogonew12.png', import.meta.url).href;
 const imgProduct = new URL('../assets/imgRectangle365.png', import.meta.url).href;
+
+const CARD_WIDTH = 248;
+const CARD_GAP = 24;
+const CARD_STEP = CARD_WIDTH + CARD_GAP;
 
 const SELLERS = [
   {
@@ -81,7 +86,20 @@ function SellerCard({ seller }) {
 
         <div className="seller-card__chips">
           <span className="seller-card__chip">{seller.products} designs</span>
-          <span className="seller-card__chip seller-card__chip--gold">B2B ready</span>
+          <span className="seller-card__chip seller-card__chip--gold">
+            <span className="seller-card__verified-icon" aria-hidden="true">
+              <svg viewBox="0 0 12 12" fill="none">
+                <path
+                  d="M2.5 6.2L5.1 8.8L9.5 3.8"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="1.6"
+                />
+              </svg>
+            </span>
+            Verified Seller
+          </span>
         </div>
 
         <button type="button" className="seller-card__action">
@@ -93,15 +111,42 @@ function SellerCard({ seller }) {
   );
 }
 
+function NavButton({ direction, onClick }) {
+  return (
+    <button
+      type="button"
+      className={`shop-by-seller__nav shop-by-seller__nav--${direction}`}
+      aria-label={direction === 'prev' ? 'Previous sellers' : 'Next sellers'}
+      onClick={onClick}
+    >
+      <span aria-hidden="true">{direction === 'prev' ? '‹' : '›'}</span>
+    </button>
+  );
+}
+
 export default function ShopBySellerCarousel() {
+  const viewportRef = useRef(null);
+
+  const scrollByStep = useCallback((direction) => {
+    const viewport = viewportRef.current;
+    if (!viewport) return;
+
+    viewport.scrollBy({ left: direction * CARD_STEP, behavior: 'smooth' });
+  }, []);
+
   return (
     <section className="shop-by-seller" aria-label="Shop By Seller">
       <h2 className="shop-by-seller__title">Shop By Seller</h2>
 
-      <div className="shop-by-seller__grid">
-        {SELLERS.map((seller) => (
-          <SellerCard key={seller.id} seller={seller} />
-        ))}
+      <div className="shop-by-seller__frame">
+        <NavButton direction="prev" onClick={() => scrollByStep(-1)} />
+        <NavButton direction="next" onClick={() => scrollByStep(1)} />
+
+        <div ref={viewportRef} className="shop-by-seller__grid">
+          {SELLERS.map((seller) => (
+            <SellerCard key={seller.id} seller={seller} />
+          ))}
+        </div>
       </div>
     </section>
   );

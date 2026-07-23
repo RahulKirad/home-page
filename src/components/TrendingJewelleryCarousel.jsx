@@ -2,6 +2,14 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import './trending-jewellery-carousel.css';
 
 const imgProduct = new URL('../assets/imgRectangle365.png', import.meta.url).href;
+const imgNecklace = new URL('../assets/imgRectangle24.png', import.meta.url).href;
+const imgDaily = new URL('../assets/imgRectangle25.png', import.meta.url).href;
+const imgParty = new URL('../assets/imgRectangle26.png', import.meta.url).href;
+const imgWedding = new URL('../assets/imgRectangle27.png', import.meta.url).href;
+const imgTraditional = new URL('../assets/imgRectangle28.png', import.meta.url).href;
+const imgShowcase = new URL('../assets/imgRectangle272.png', import.meta.url).href;
+
+const IMAGE_CYCLE_MS = 50000;
 
 const CARD_WIDTH = 260;
 const CARD_GAP = 24;
@@ -15,7 +23,7 @@ const PRODUCTS = [
     weight: '18.78 gm',
     wastageOld: '4.0',
     wastageNew: '3.0',
-    image: imgProduct,
+    images: [imgProduct, imgNecklace, imgShowcase],
   },
   {
     id: 'kalamani-2',
@@ -24,7 +32,7 @@ const PRODUCTS = [
     weight: '24.12 gm',
     wastageOld: '4.5',
     wastageNew: '3.2',
-    image: imgProduct,
+    images: [imgNecklace, imgWedding, imgTraditional],
   },
   {
     id: 'kalamani-3',
@@ -33,7 +41,7 @@ const PRODUCTS = [
     weight: '16.45 gm',
     wastageOld: '3.8',
     wastageNew: '2.9',
-    image: imgProduct,
+    images: [imgParty, imgProduct, imgDaily],
   },
   {
     id: 'kalamani-4',
@@ -42,7 +50,7 @@ const PRODUCTS = [
     weight: '12.60 gm',
     wastageOld: '4.2',
     wastageNew: '3.1',
-    image: imgProduct,
+    images: [imgDaily, imgShowcase, imgProduct],
   },
   {
     id: 'kalamani-5',
@@ -51,21 +59,61 @@ const PRODUCTS = [
     weight: '32.05 gm',
     wastageOld: '5.0',
     wastageNew: '3.6',
-    image: imgProduct,
+    images: [imgWedding, imgTraditional, imgNecklace],
   },
 ];
 
 function TrendingCard({ product }) {
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const images = product.images;
+
+  useEffect(() => {
+    if (images.length <= 1 || isPaused) {
+      return undefined;
+    }
+
+    const timer = window.setInterval(() => {
+      setActiveImageIndex((index) => (index + 1) % images.length);
+    }, IMAGE_CYCLE_MS);
+
+    return () => window.clearInterval(timer);
+  }, [images.length, isPaused]);
+
   return (
-    <article className="trending-card">
+    <article
+      className="trending-card"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
       <div className="trending-card__media">
-        <img alt={product.name} src={product.image} />
+        {images.map((image, index) => (
+          <img
+            key={`${product.id}-${image}-${index}`}
+            alt={product.name}
+            className={index === activeImageIndex ? 'is-active' : ''}
+            src={image}
+          />
+        ))}
+
         <div className="trending-card__overlay">
           <span className="trending-card__cta">Quick View</span>
         </div>
+
         <button type="button" className="trending-card__wishlist" aria-label={`Save ${product.name}`}>
           ♥
         </button>
+
+        {images.length > 1 && (
+          <div className="trending-card__dots" aria-hidden="true">
+            {images.map((image, index) => (
+              <span
+                key={`${product.id}-dot-${image}-${index}`}
+                className={`trending-card__dot${index === activeImageIndex ? ' is-active' : ''}`}
+              />
+            ))}
+          </div>
+        )}
       </div>
 
       <div className="trending-card__body">
@@ -153,7 +201,7 @@ export default function TrendingJewelleryCarousel() {
       const shouldPause = isHovered || Date.now() < pauseUntilRef.current;
 
       if (!shouldPause) {
-        viewport.scrollLeft += 0.6;
+        viewport.scrollLeft += 1.4;
       }
 
       frameId = window.requestAnimationFrame(tick);
@@ -167,21 +215,18 @@ export default function TrendingJewelleryCarousel() {
     <section className="trending-carousel" aria-label="Trending Jewellery Collection">
       <h2 className="trending-carousel__title">Trending Jewellery Collection</h2>
 
-      <div className="trending-carousel__stage">
+      <div
+        className="trending-carousel__frame"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
         <NavButton direction="prev" onClick={() => scrollByStep(-1)} />
         <NavButton direction="next" onClick={() => scrollByStep(1)} />
 
-        <div
-          ref={viewportRef}
-          className="trending-carousel__viewport"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
-          <div className="trending-carousel__track">
-            {marqueeItems.map((product, index) => (
-              <TrendingCard key={`${product.id}-${index}`} product={product} />
-            ))}
-          </div>
+        <div ref={viewportRef} className="trending-carousel__stage">
+          {marqueeItems.map((product, index) => (
+            <TrendingCard key={`${product.id}-${index}`} product={product} />
+          ))}
         </div>
       </div>
     </section>
