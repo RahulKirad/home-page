@@ -3,6 +3,7 @@
   left: 0;
   top: 1165px;
   width: 1440px;
+  overflow: visible;
 }
 
 .trending-carousel__title {
@@ -15,40 +16,31 @@
   color: #201a14;
 }
 
-.trending-carousel__stage {
+.trending-carousel__frame {
   position: relative;
   margin-top: 48px;
-  padding: 12px 56px 28px;
+  overflow: visible;
 }
 
-.trending-carousel__viewport {
+.trending-carousel__stage {
+  display: flex;
+  gap: 24px;
+  padding: 28px 56px 40px;
   overflow-x: auto;
-  overflow-y: hidden;
+  overflow-y: visible;
   scroll-behavior: smooth;
   scrollbar-width: none;
-  mask-image: linear-gradient(
-    to right,
-    transparent 0%,
-    #000 4%,
-    #000 96%,
-    transparent 100%
-  );
+  background: transparent;
 }
 
-.trending-carousel__viewport::-webkit-scrollbar {
+.trending-carousel__stage::-webkit-scrollbar {
   display: none;
-}
-
-.trending-carousel__track {
-  display: flex;
-  width: max-content;
-  gap: 24px;
 }
 
 .trending-carousel__nav {
   position: absolute;
   top: 50%;
-  z-index: 2;
+  z-index: 3;
   display: flex;
   width: 46px;
   height: 46px;
@@ -73,11 +65,11 @@
 }
 
 .trending-carousel__nav--prev {
-  left: 8px;
+  left: 12px;
 }
 
 .trending-carousel__nav--next {
-  right: 8px;
+  right: 12px;
 }
 
 .trending-card {
@@ -109,19 +101,52 @@
 }
 
 .trending-card__media img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.45s ease;
+  opacity: 0;
+  transform: scale(1.02);
+  transition: opacity 0.65s ease, transform 0.65s ease;
 }
 
-.trending-card:hover .trending-card__media img {
+.trending-card__media img.is-active {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 1;
+}
+
+.trending-card:hover .trending-card__media img.is-active {
   transform: scale(1.08);
+}
+
+.trending-card__dots {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  z-index: 2;
+  display: flex;
+  gap: 6px;
+}
+
+.trending-card__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.55);
+  transition: transform 0.25s ease, background-color 0.25s ease;
+}
+
+.trending-card__dot.is-active {
+  background: #fff;
+  transform: scale(1.15);
 }
 
 .trending-card__overlay {
   position: absolute;
   inset: 0;
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -157,6 +182,7 @@
   position: absolute;
   top: 12px;
   right: 12px;
+  z-index: 3;
   display: flex;
   width: 34px;
   height: 34px;
