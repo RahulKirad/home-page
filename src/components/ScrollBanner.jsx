@@ -1,5 +1,4 @@
 import { bannerFrames } from '../assets/bannerFrames';
-import { BANNER_HEIGHT, STATS_BAR_HEIGHT } from '../constants/banner';
 import HeroStatsBar from './HeroStatsBar';
 import './banner-copy.css';
 
@@ -78,9 +77,14 @@ function BannerShell({ frameIndex, scrollProgress, isAnimationComplete, classNam
     <div
       className={`relative w-full max-w-[1440px] overflow-hidden bg-[#201a14] ${className}`}
       data-name="Scroll Banner"
-      style={{ height: BANNER_HEIGHT + STATS_BAR_HEIGHT }}
+      style={{
+        height: 'calc(var(--banner-visual-height, 580px) + var(--banner-stats-height, 47px))',
+      }}
     >
-      <div className="relative w-full overflow-hidden" style={{ height: BANNER_HEIGHT }}>
+      <div
+        className="relative w-full overflow-hidden"
+        style={{ height: 'var(--banner-visual-height, 580px)' }}
+      >
         <BannerContent
           frameIndex={frameIndex}
           isAnimationComplete={isAnimationComplete}

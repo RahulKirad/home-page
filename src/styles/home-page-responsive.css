@@ -1,0 +1,96 @@
+/* ── Home page responsive layout ── */
+
+.home-page-root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+.home-page-canvas {
+  position: relative;
+  width: 1440px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.home-page-flow {
+  position: relative;
+  z-index: 2;
+}
+
+.home-page-legacy {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+/* Tablet: scale fixed 1440px canvas to fit viewport */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .home-page-canvas {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/*
+ * Legacy Figma layers use absolute Y from the artboard top (incl. header).
+ * The banner sits outside home-page-canvas, so pull flow/legacy up to align.
+ */
+@media (min-width: 1024px) {
+  .home-page-flow,
+  .home-page-legacy {
+    top: calc(-1 * var(--hero-layout-offset));
+  }
+}
+
+/* Mobile: stack sections, hide legacy absolute Figma layer */
+@media (max-width: 1023px) {
+  :root {
+    --site-header-height: 120px;
+    --banner-visual-height: min(420px, 72vw);
+  }
+
+  .home-page-root {
+    min-height: auto !important;
+    padding-top: var(--site-header-height);
+  }
+
+  .home-page-canvas {
+    width: 100%;
+    transform: none !important;
+  }
+
+  .home-page-legacy {
+    display: none !important;
+  }
+
+  .home-page-flow {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .banner-scroll-track,
+  .banner-scroll-hint {
+    display: none !important;
+  }
+
+  .banner-hero-section [data-name='Scroll Banner'] {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --site-header-height: 112px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --site-header-height: 104px;
+  }
+}

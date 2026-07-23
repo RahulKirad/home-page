@@ -77,3 +77,15 @@
     display: none;
   }
 }
+
+@media (max-width: 767px) {
+  .hero-stats-bar__group {
+    gap: 32px;
+    padding-right: 32px;
+  }
+
+  .hero-stats-bar__item,
+  .hero-stats-bar__item--tagline {
+    font-size: 13px;
+  }
+}

@@ -1,4 +1,5 @@
 import { createPortal } from 'react-dom';
+import { useState } from 'react';
 import './site-header.css';
 
 const imgLogonew12 = new URL('../assets/imgLogonew12.png', import.meta.url).href;
@@ -46,7 +47,7 @@ function NavActions() {
   );
 }
 
-function HeaderContent() {
+function HeaderContent({ menuOpen, onToggleMenu, onCloseMenu }) {
   return (
     <div className="site-header-shell">
       <div className="site-header-topbar">
@@ -89,7 +90,7 @@ function HeaderContent() {
           </label>
         </div>
 
-        <div className="site-header-cta-group">
+        <div className="site-header-cta-group site-header-cta-group--desktop">
           <button type="button" className="site-header-btn site-header-btn--outline">
             Custom Order
           </button>
@@ -107,28 +108,49 @@ function HeaderContent() {
         <div aria-hidden="true" className="site-header-main-spacer" />
 
         <NavActions />
+
+        <button
+          type="button"
+          className="site-header-menu-btn"
+          aria-expanded={menuOpen}
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          onClick={onToggleMenu}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
       </div>
 
-      <nav className="site-header-nav-row" aria-label="Primary">
-        <span className="site-header-nav-link site-header-nav-link--active">Home</span>
-        <a href="#" className="site-header-nav-link">
+      <nav
+        className={`site-header-nav-row${menuOpen ? ' site-header-nav-row--open' : ''}`}
+        aria-label="Primary"
+      >
+        <span className="site-header-nav-link site-header-nav-link--active" onClick={onCloseMenu}>Home</span>
+        <a href="#" className="site-header-nav-link" onClick={onCloseMenu}>
           Products
         </a>
-        <span className="site-header-nav-link">Gallery</span>
-        <span className="site-header-nav-link">Blogs</span>
-        <span className="site-header-nav-link">Bulk Product</span>
-        <span className="site-header-nav-link">More</span>
+        <span className="site-header-nav-link" onClick={onCloseMenu}>Gallery</span>
+        <span className="site-header-nav-link" onClick={onCloseMenu}>Blogs</span>
+        <span className="site-header-nav-link" onClick={onCloseMenu}>Bulk Product</span>
+        <span className="site-header-nav-link" onClick={onCloseMenu}>More</span>
       </nav>
 
-      <div className="site-header-order-protection">Order protections</div>
+      <div className="site-header-order-protection site-header-order-protection--desktop">Order protections</div>
     </div>
   );
 }
 
 export default function SiteHeader() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return createPortal(
     <header className="site-header fixed inset-x-0 top-0 z-50 flex justify-center bg-white">
-      <HeaderContent />
+      <HeaderContent
+        menuOpen={menuOpen}
+        onCloseMenu={() => setMenuOpen(false)}
+        onToggleMenu={() => setMenuOpen((open) => !open)}
+      />
     </header>,
     document.body,
   );

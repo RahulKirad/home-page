@@ -3,6 +3,8 @@ import { BANNER_FRAME_COUNT } from '../assets/bannerFrames';
 import { BANNER_HEIGHT, STATS_BAR_HEIGHT, getBannerScrollDistance } from '../constants/banner';
 
 const SMOOTHING = 0.14;
+const MAX_WHEEL_STEP = 90;
+const SCROLL_RANGE_PADDING = 1;
 
 export const HERO_SECTION_HEIGHT = BANNER_HEIGHT + STATS_BAR_HEIGHT;
 
@@ -14,6 +16,24 @@ function unlockPageScroll() {
 function lockPageScroll() {
   document.body.classList.add('banner-scroll-locked');
   document.body.style.overflow = 'hidden';
+}
+
+function getScrollRange() {
+  const viewportRange = getBannerScrollDistance();
+  const frameRange = BANNER_FRAME_COUNT * 52;
+  return Math.max(viewportRange, frameRange);
+}
+
+function getNormalizedWheelDelta(event) {
+  let delta = event.deltaY;
+
+  if (event.deltaMode === WheelEvent.DOM_DELTA_LINE) {
+    delta *= 16;
+  } else if (event.deltaMode === WheelEvent.DOM_DELTA_PAGE) {
+    delta *= window.innerHeight;
+  }
+
+  return Math.sign(delta) * Math.min(Math.abs(delta), MAX_WHEEL_STEP);
 }
 
 export function useBannerScroll(scrollContainerRef) {
@@ -42,9 +62,9 @@ export function useBannerScroll(scrollContainerRef) {
     const getMaxScroll = () => Math.max(container.scrollHeight - container.clientHeight, 0);
 
     const progressFromScrollTop = (scrollTop) => {
-      const scrollDistance = getBannerScrollDistance();
-      if (scrollDistance <= 0) return 0;
-      return Math.min(Math.max(scrollTop / scrollDistance, 0), 1);
+      const maxScroll = getMaxScroll();
+      if (maxScroll <= 0) return scrollTop > 0 ? 1 : 0;
+      return Math.min(Math.max(scrollTop / maxScroll, 0), 1);
     };
 
     const applyScrollState = (progress) => {
@@ -104,7 +124,10 @@ export function useBannerScroll(scrollContainerRef) {
       const atMin = container.scrollTop <= 2;
 
       if (atMax && delta > 0) {
-        markComplete();
+        const currentProgress = progressFromScrollTop(container.scrollTop);
+        if (currentProgress >= 0.98) {
+          markComplete();
+        }
         return;
       }
 
@@ -122,22 +145,39 @@ export function useBannerScroll(scrollContainerRef) {
 
     const onWheel = (event) => {
       event.preventDefault();
-      scrollBannerBy(event.deltaY);
+      scrollBannerBy(getNormalizedWheelDelta(event));
     };
 
     const updateScrollDistance = () => {
-      document.documentElement.style.setProperty(
-        '--banner-scroll-distance',
-        `${getBannerScrollDistance()}px`,
-      );
+      const clientHeight = container.clientHeight;
+      const scrollRange = getScrollRange() * SCROLL_RANGE_PADDING;
+
+      document.documentElement.style.setProperty('--banner-scroll-distance', `${scrollRange + clientHeight}px`);
+      document.documentElement.style.setProperty('--banner-scroll-range', `${scrollRange}px`);
     };
 
-    updateScrollDistance();
+    const syncLayout = () => {
+      updateScrollDistance();
+      scheduleTick();
+    };
 
-    if (restoreScrollOnMountRef.current != null) {
+    syncLayout();
+    requestAnimationFrame(syncLayout);
+
+    if (restoreScrollOnMountRef.current === 'end') {
+      restoreScrollOnMountRef.current = null;
+      requestAnimationFrame(() => {
+        syncLayout();
+        const maxScroll = getMaxScroll();
+        container.scrollTop = maxScroll;
+        scrollTopRef.current = maxScroll;
+        scheduleTick();
+      });
+    } else if (restoreScrollOnMountRef.current != null) {
       const restored = restoreScrollOnMountRef.current;
       restoreScrollOnMountRef.current = null;
       requestAnimationFrame(() => {
+        syncLayout();
         const maxScroll = getMaxScroll();
         const restoredTop = Math.min(Math.max(restored, 0), maxScroll);
         container.scrollTop = restoredTop;
@@ -148,20 +188,22 @@ export function useBannerScroll(scrollContainerRef) {
       scrollTopRef.current = container.scrollTop;
       scheduleTick();
     }
+
     lockPageScroll();
     window.scrollTo(0, 0);
 
     container.addEventListener('scroll', onContainerScroll, { passive: true });
     window.addEventListener('wheel', onWheel, { passive: false });
-    window.addEventListener('resize', updateScrollDistance);
+    window.addEventListener('resize', syncLayout);
 
     return () => {
       cancelAnimationFrame(frameId);
       container.removeEventListener('scroll', onContainerScroll);
       window.removeEventListener('wheel', onWheel);
-      window.removeEventListener('resize', updateScrollDistance);
+      window.removeEventListener('resize', syncLayout);
       unlockPageScroll();
       document.documentElement.style.removeProperty('--banner-scroll-distance');
+      document.documentElement.style.removeProperty('--banner-scroll-range');
     };
   }, [scrollContainerRef, isAnimationComplete]);
 
@@ -173,8 +215,7 @@ export function useBannerScroll(scrollContainerRef) {
 
       if (event.deltaY < 0) {
         event.preventDefault();
-        const scrollDistance = getBannerScrollDistance();
-        restoreScrollOnMountRef.current = scrollDistance;
+        restoreScrollOnMountRef.current = 'end';
         completeRef.current = false;
         setIsAnimationComplete(false);
       }

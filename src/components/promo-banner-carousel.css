@@ -177,3 +177,56 @@
   background: #9a6f0a;
   transform: translateY(-1px);
 }
+
+@media (max-width: 1023px) {
+  .promo-banner {
+    position: relative;
+    top: auto;
+    left: auto;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    padding: 0 16px 32px;
+  }
+
+  .promo-banner__left,
+  .promo-banner__right {
+    width: 100%;
+    height: auto;
+    min-height: 240px;
+    border-radius: 20px;
+  }
+
+  .promo-banner__left {
+    border-radius: 20px 20px 0 0;
+    aspect-ratio: 16 / 10;
+  }
+
+  .promo-banner__right {
+    border-radius: 0 0 20px 20px;
+    min-height: 320px;
+  }
+
+  .promo-banner__products-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .promo-banner__product-image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+  }
+
+  .promo-banner__shop-now {
+    width: 100%;
+    max-width: 280px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .promo-banner__products-grid {
+    grid-template-columns: 1fr;
+  }
+}
