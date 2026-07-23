@@ -85,3 +85,44 @@
     font-size: 15px;
   }
 }
+
+@media (max-width: 1023px) {
+  .founder-banner {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    transform: none;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .founder-banner__image {
+    position: relative;
+    width: 100%;
+    height: min(360px, 62vw);
+    object-position: center top;
+  }
+
+  .founder-banner__content {
+    position: relative;
+    max-width: 100%;
+    margin-left: 0;
+    padding: 28px 20px 36px;
+  }
+
+  .founder-banner__name {
+    font-size: clamp(2rem, 7vw, 2.75rem);
+  }
+
+  .founder-banner__role {
+    font-size: 0.9375rem;
+  }
+
+  .founder-banner__bio {
+    max-width: 100%;
+    font-size: 0.9375rem;
+  }
+}

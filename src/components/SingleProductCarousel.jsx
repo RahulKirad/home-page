@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import './single-product-carousel.css';
 
 const imgRectangle24 = new URL('../assets/imgRectangle24.png', import.meta.url).href;
 const imgRectangle25 = new URL('../assets/imgRectangle25.png', import.meta.url).href;
@@ -216,18 +217,11 @@ export default function SingleProductCarousel() {
   }, [isPaused, activeIndex]);
 
   return (
-    <section
-      className="absolute left-0 top-[3291px] w-[1440px]"
-      data-name="Video Collection"
-    >
-      <h2 className="font-['Playfair_Display:Regular'] text-center text-[40px] text-[#201a14]">
-        Video Collection
-      </h2>
+    <section className="video-collection" data-name="Video Collection">
+      <h2 className="video-collection__title">Video Collection</h2>
 
       <div
-        className={`relative mx-auto mt-[60px] flex h-[580px] w-full max-w-[1440px] items-end justify-center overflow-visible select-none touch-none ${
-          isDragging ? 'cursor-grabbing' : 'cursor-grab'
-        }`}
+        className={`video-collection__stage-wrap${isDragging ? ' video-collection__stage-wrap--dragging' : ''}`}
         style={{ perspective: '1700px', perspectiveOrigin: '50% 90%' }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}

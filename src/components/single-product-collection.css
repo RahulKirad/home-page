@@ -236,3 +236,55 @@
 .spc-grid-card--tall .spc-grid-card__overlay {
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.04) 0%, rgba(0, 0, 0, 0.15) 55%, rgba(0, 0, 0, 0.42) 100%);
 }
+
+@media (max-width: 1023px) {
+  .spc-section {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    padding: 40px 0 48px;
+  }
+
+  .spc-section__title {
+    font-size: clamp(1.75rem, 5vw, 2.25rem);
+    padding: 0 16px;
+  }
+
+  .spc-section__subtitle {
+    padding: 0 16px;
+    font-size: 0.9375rem;
+  }
+
+  .spc-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    height: auto;
+    margin-top: 28px;
+    padding: 0 16px;
+    gap: 16px;
+  }
+
+  .spc-grid__col--stack {
+    display: contents;
+  }
+
+  .spc-grid-card--tall {
+    min-height: 360px;
+  }
+
+  .spc-grid-card--small {
+    min-height: 220px;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  .spc-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .spc-grid-card--tall {
+    grid-column: span 2;
+    min-height: 400px;
+  }
+}

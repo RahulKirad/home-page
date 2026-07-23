@@ -15,6 +15,11 @@ body,
 
 :root {
   --site-header-height: 175px;
+  --banner-visual-height: 580px;
+  --banner-stats-height: 47px;
+  --hero-layout-offset: calc(
+    var(--site-header-height) + var(--banner-visual-height) + var(--banner-stats-height)
+  );
   --silk-bg-bottom: #e8e0d0;
   --silk-bg: #f2ece2;
   --silk-bg-mid: #eee8dc;
@@ -41,7 +46,7 @@ body {
       var(--silk-bg-bottom) 100%
     );
   background-attachment: fixed;
-  overflow-x: auto;
+  overflow-x: clip;
 }
 
 #root {
@@ -166,6 +171,11 @@ body.banner-scroll-locked {
 .banner-hero-section {
   position: relative;
   z-index: 20;
+}
+
+.banner-hero-spacer {
+  height: calc(var(--banner-visual-height, 580px) + var(--banner-stats-height, 47px));
+  pointer-events: none;
 }
 
 .banner-hero-fixed {

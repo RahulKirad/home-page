@@ -16,6 +16,7 @@ export default function BannerHeroSection() {
 
   return (
     <section className="banner-hero-section" aria-label="Hero banner">
+      {!isAnimationComplete && <div className="banner-hero-spacer" aria-hidden="true" />}
       <ScrollBanner
         frameIndex={frameIndex}
         isAnimationComplete={isAnimationComplete}

@@ -7,6 +7,10 @@ import ShopBySellerCarousel from '../components/ShopBySellerCarousel.jsx';
 import BulkProductsCarousel from '../components/BulkProductsCarousel.jsx';
 import SingleProductCollectionSection from '../components/SingleProductCollectionSection.jsx';
 import FounderBannerSection from '../components/FounderBannerSection.jsx';
+import HomePageMobileBlocks from '../components/HomePageMobileBlocks.jsx';
+import { useRef } from 'react';
+import { useHomePageScale } from '../hooks/useHomePageScale.js';
+import '../styles/home-page-responsive.css';
 
 const imgRectangle365 = new URL('../assets/imgRectangle365.png', import.meta.url).href;
 const imgRectangle293 = new URL('../assets/imgRectangle293.png', import.meta.url).href;
@@ -97,12 +101,26 @@ function Component3({ className = "" }) {
 }
 
 export default function HomePage() {
+  const canvasRef = useRef(null);
+  useHomePageScale(canvasRef);
+
   return (
     <>
       <SiteHeader />
       <div className="home-page-root mx-auto relative w-full max-w-[1440px] min-h-[8895px]" data-node-id="1:2" data-name="Home Page">
         <BannerHeroSection />
-        <div className="home-page-content absolute top-0 left-0 w-full max-w-[1440px]">
+        <div className="home-page-canvas" ref={canvasRef}>
+          <div className="home-page-flow">
+            <HomePageMobileBlocks />
+            <TrendingJewelleryCarousel />
+            <ShopBySellerCarousel />
+            <PromoBannerCarousel />
+            <SingleProductCarousel />
+            <BulkProductsCarousel />
+            <SingleProductCollectionSection />
+            <FounderBannerSection />
+          </div>
+          <div className="home-page-content home-page-legacy absolute top-0 left-0 w-full max-w-[1440px]">
       <div className="-translate-x-1/2 absolute bg-[#201a14] h-[408px] left-[calc(50%+2.5px)] top-[6789px] w-[1279px]" data-node-id="5:110" />
       <div className="absolute bg-[#37332f] border border-[#c9a84c] border-solid h-[96px] left-[354px] rounded-[13px] top-[6937px] w-[733px]" data-node-id="5:114" />
       <div className="absolute bg-[#37332f] border border-[#c9a84c] border-solid h-[96px] left-[353px] rounded-[13px] top-[7056px] w-[733px]" data-node-id="130:26" />
@@ -135,7 +153,6 @@ export default function HomePage() {
       <div className="absolute bg-[#dcc685] h-[37px] left-[992px] rounded-[6px] top-[8348px] w-[137px]" data-node-id="29:38" />
       <div className="absolute bg-gradient-to-b from-[#c9a84c] h-[139px] left-[170px] rounded-[10px] to-[#fffaed] top-[8247px] w-[324px]" data-node-id="29:40" />
       <div className="absolute bg-[#201a14] h-[40px] left-[-2px] top-[8500px] w-[1440px]" data-node-id="28:14" />
-      <TrendingJewelleryCarousel />
       <p className="[word-break:break-word] absolute font-['Playfair:Bold'] font-bold h-[106px] leading-[0] left-[calc(50%-106px)] text-[#201a14] text-[0px] top-[5806px] w-[772px]" data-node-id="5:107" style={{ fontVariationSettings: '"opsz" 12, "wdth" 100' }}>
         <span className="font-['DM_Serif_Display:Regular'] leading-[normal] not-italic text-[36px]">Kalkata Jewels</span>
         <span className="font-['DM_Serif_Display:Regular'] leading-[normal] not-italic text-[36px]">{` `}</span>
@@ -148,7 +165,6 @@ export default function HomePage() {
       <div className="-translate-x-1/2 absolute h-[499px] left-[calc(50%-396px)] rounded-[16px] top-[5740px] w-[412px]" data-node-id="5:109">
         <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[16px] size-full" src={imgRectangle272} />
       </div>
-      <FounderBannerSection />
       <p className="[word-break:break-word] absolute font-['Kanit:Light'] h-[17px] leading-[16px] left-[calc(50%-297px)] not-italic text-[16px] text-white top-[6889px] w-[609px]" data-node-id="5:111">
         Grow your business with our premium gold products and exceptional customer service
       </p>
@@ -366,7 +382,6 @@ export default function HomePage() {
       <p className="[word-break:break-word] absolute font-['Inter:Italic'] font-normal italic leading-[normal] left-[calc(50%-375px)] text-[#7b7b7b] text-[11px] top-[7743px] w-[74px]" data-node-id="32:115">
         Verified Buyer
       </p>
-      <SingleProductCarousel />
       <p className="[word-break:break-word] absolute font-['Poppins:Bold'] leading-[normal] left-[215px] not-italic text-[20px] text-black top-[1057px] w-[78px]" data-node-id="38:19">
         9K Gold
       </p>
@@ -451,14 +466,11 @@ export default function HomePage() {
           </div>
         </div>
       </div>
-      <PromoBannerCarousel />
-      <BulkProductsCarousel />
-      <SingleProductCollectionSection />
-      <ShopBySellerCarousel />
       <p className="[word-break:break-word] absolute font-['Inter:Italic'] font-normal italic leading-[normal] left-[calc(50%+498px)] text-[#7b7b7b] text-[11px] top-[7742px] w-[74px]" data-node-id="32:133">
         Verified Buyer
       </p>
-    </div>
+          </div>
+        </div>
       </div>
     </>
   );

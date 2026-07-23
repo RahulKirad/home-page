@@ -1,7 +1,7 @@
 export const BANNER_TOP = 175;
 export const BANNER_HEIGHT = 580;
 export const STATS_BAR_HEIGHT = 47;
-export const BANNER_SCROLL_VIEWS = 2;
+export const BANNER_SCROLL_VIEWS = 2.5;
 
 export const BANNER_BOTTOM = BANNER_TOP + BANNER_HEIGHT;
 export const STATS_BAR_TOP = BANNER_BOTTOM;
