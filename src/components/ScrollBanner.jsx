@@ -1,17 +1,21 @@
-import { bannerFrames } from '../assets/bannerFrames';
 import HeroStatsBar from './HeroStatsBar';
 import './banner-copy.css';
 
-function BannerContent({ frameIndex, scrollProgress, isAnimationComplete }) {
+const bannerVideo = new URL('../assets/videoring.mp4', import.meta.url).href;
+
+function BannerContent() {
   return (
     <>
       <div className="absolute inset-0 overflow-hidden">
-        <img
-          alt=""
-          aria-hidden="true"
-          className="absolute h-[116.29%] left-[-0.62%] max-w-none top-[-8.15%] w-[100.63%] object-cover pointer-events-none"
-          src={bannerFrames[frameIndex]}
-        />
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="banner-video absolute inset-0 size-full object-cover pointer-events-none"
+        >
+          <source src={bannerVideo} type="video/mp4" />
+        </video>
       </div>
 
       <div className="banner-copy">
@@ -51,81 +55,28 @@ function BannerContent({ frameIndex, scrollProgress, isAnimationComplete }) {
           </div>
         </div>
       </div>
-
-      <div
-        className="absolute inset-x-0 bottom-0 z-20"
-        aria-hidden={isAnimationComplete}
-        role="progressbar"
-        aria-valuemin={0}
-        aria-valuemax={100}
-        aria-valuenow={Math.round(scrollProgress * 100)}
-        aria-label="Banner scroll progress"
-      >
-        <div className="h-[3px] w-full bg-white/20">
-          <div
-            className="banner-progress-fill h-full origin-left bg-[#c9a84c] shadow-[0_0_12px_rgba(201,168,76,0.55)]"
-            style={{ width: `${scrollProgress * 100}%` }}
-          />
-        </div>
-      </div>
     </>
   );
 }
 
-function BannerShell({ frameIndex, scrollProgress, isAnimationComplete, className = '' }) {
-  return (
-    <div
-      className={`relative w-full max-w-[1440px] overflow-hidden bg-[#201a14] ${className}`}
-      data-name="Scroll Banner"
-      style={{
-        height: 'calc(var(--banner-visual-height, 580px) + var(--banner-stats-height, 47px))',
-      }}
-    >
-      <div
-        className="relative w-full overflow-hidden"
-        style={{ height: 'var(--banner-visual-height, 580px)' }}
-      >
-        <BannerContent
-          frameIndex={frameIndex}
-          isAnimationComplete={isAnimationComplete}
-          scrollProgress={scrollProgress}
-        />
-      </div>
-      <HeroStatsBar />
-    </div>
-  );
-}
-
-export default function ScrollBanner({
-  frameIndex,
-  scrollProgress,
-  isAnimationComplete,
-  className = '',
-}) {
-  if (!isAnimationComplete) {
-    return (
-      <div
-        className="banner-hero-fixed fixed inset-x-0 z-30 flex justify-center"
-        style={{ top: 'var(--site-header-height, 175px)' }}
-      >
-        <BannerShell
-          className={className}
-          frameIndex={frameIndex}
-          isAnimationComplete={isAnimationComplete}
-          scrollProgress={scrollProgress}
-        />
-      </div>
-    );
-  }
-
+export default function ScrollBanner({ className = '' }) {
   return (
     <div className="banner-hero-settled relative z-30 flex w-full justify-center">
-      <BannerShell
-        className={className}
-        frameIndex={frameIndex}
-        isAnimationComplete={isAnimationComplete}
-        scrollProgress={scrollProgress}
-      />
+      <div
+        className={`relative w-full max-w-[1440px] overflow-hidden bg-[#201a14] ${className}`}
+        data-name="Scroll Banner"
+        style={{
+          height: 'calc(var(--banner-visual-height, 580px) + var(--banner-stats-height, 47px))',
+        }}
+      >
+        <div
+          className="relative w-full overflow-hidden"
+          style={{ height: 'var(--banner-visual-height, 580px)' }}
+        >
+          <BannerContent />
+        </div>
+        <HeroStatsBar />
+      </div>
     </div>
   );
 }
