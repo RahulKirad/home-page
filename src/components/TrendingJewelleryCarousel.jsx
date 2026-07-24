@@ -65,11 +65,12 @@ const PRODUCTS = [
 
 function TrendingCard({ product }) {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [added, setAdded] = useState(false);
   const images = product.images;
 
   useEffect(() => {
-    if (images.length <= 1 || isPaused) {
+    if (images.length <= 1 || isHovered) {
       return undefined;
     }
 
@@ -78,13 +79,31 @@ function TrendingCard({ product }) {
     }, IMAGE_CYCLE_MS);
 
     return () => window.clearInterval(timer);
-  }, [images.length, isPaused]);
+  }, [images.length, isHovered]);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+    if (images.length > 1) {
+      setActiveImageIndex((index) => (index + 1) % images.length);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    setActiveImageIndex(0);
+  };
+
+  const handleAddToCart = (event) => {
+    event.stopPropagation();
+    setAdded(true);
+    window.setTimeout(() => setAdded(false), 1800);
+  };
 
   return (
     <article
       className="trending-card"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       <div className="trending-card__media">
         {images.map((image, index) => (
@@ -95,10 +114,6 @@ function TrendingCard({ product }) {
             src={image}
           />
         ))}
-
-        <div className="trending-card__overlay">
-          <span className="trending-card__cta">Quick View</span>
-        </div>
 
         <button type="button" className="trending-card__wishlist" aria-label={`Save ${product.name}`}>
           ♥
@@ -124,11 +139,55 @@ function TrendingCard({ product }) {
           <span className="trending-card__badge trending-card__badge--muted">{product.weight}</span>
         </div>
 
-        <p className="trending-card__wastage">
-          Wastage{' '}
-          <span className="trending-card__wastage-old">{product.wastageOld}</span>{' '}
-          <span className="trending-card__wastage-new">{product.wastageNew}</span>
-        </p>
+        <div className="trending-card__footer">
+          <p className="trending-card__wastage">
+            Wastage{' '}
+            <span className="trending-card__wastage-old">{product.wastageOld}</span>{' '}
+            <span className="trending-card__wastage-new">{product.wastageNew}</span>
+          </p>
+
+          <button
+            type="button"
+            className={`trending-card__cart${added ? ' trending-card__cart--added' : ''}`}
+            aria-live="polite"
+            onClick={handleAddToCart}
+          >
+            {added ? (
+              <>
+                <svg className="trending-card__cart-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                  <path
+                    d="M5 10.5l3.5 3.5L15 7"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1.75"
+                  />
+                </svg>
+                Added
+              </>
+            ) : (
+              <>
+                <svg className="trending-card__cart-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                  <path
+                    d="M6 6h11l-1.2 7H7.2L6 6z"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1.5"
+                  />
+                  <path
+                    d="M8 6V5a2 2 0 0 1 4 0v1"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1.5"
+                  />
+                </svg>
+                Add to Cart
+              </>
+            )}
+          </button>
+        </div>
       </div>
     </article>
   );
@@ -213,7 +272,12 @@ export default function TrendingJewelleryCarousel() {
 
   return (
     <section className="trending-carousel" aria-label="Trending Jewellery Collection">
-      <h2 className="trending-carousel__title">Trending Jewellery Collection</h2>
+      <div className="trending-carousel__header">
+        <h2 className="trending-carousel__title">Trending Jewellery Collection</h2>
+        <button type="button" className="trending-carousel__view-all">
+          View All
+        </button>
+      </div>
 
       <div
         className="trending-carousel__frame"

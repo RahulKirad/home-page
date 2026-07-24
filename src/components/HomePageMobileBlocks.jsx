@@ -1,6 +1,5 @@
+import AboutSectionImageCarousel from './AboutSectionImageCarousel.jsx';
 import './home-page-mobile-blocks.css';
-
-const imgRectangle272 = new URL('../assets/imgRectangle272.png', import.meta.url).href;
 const videoGold9k = new URL('../assets/PixVerse_V6_Image_Text_540P_A_luxury_macro_pro (1).mp4', import.meta.url).href;
 const videoGold18k = new URL('../assets/hailuo-2_3_A_luxury_macro_product_film_featuring_a_premium_gold_Earrings_piece_that_i_gave_-0.mp4', import.meta.url).href;
 const videoGold20k = new URL('../assets/PixVerse_V6_Image_Text_540P_A_luxury_macro_pro (2) (1).mp4', import.meta.url).href;
@@ -40,7 +39,7 @@ export default function HomePageMobileBlocks() {
 
       <section className="mobile-about-section" aria-label="About Kalkata Jewels">
         <div className="mobile-about-section__image">
-          <img alt="Kalkata Jewels marketplace" src={imgRectangle272} />
+          <AboutSectionImageCarousel />
         </div>
         <div className="mobile-about-section__content">
           <h2 className="mobile-about-section__title">
@@ -56,11 +55,6 @@ export default function HomePageMobileBlocks() {
           </p>
         </div>
       </section>
-
-      <footer className="mobile-footer">
-        <p className="mobile-footer__brand">Kalkata Jewels</p>
-        <p className="mobile-footer__copy">India&apos;s 1st B2B Gold Jewellery sourcing network</p>
-      </footer>
     </div>
   );
 }
