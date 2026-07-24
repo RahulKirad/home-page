@@ -12,7 +12,7 @@
 }
 
 .mobile-gold-section {
-  padding: 12px 16px 24px;
+  padding: 12px 16px 16px;
 }
 
 .mobile-gold-grid {
@@ -59,13 +59,8 @@
 .mobile-about-section__image {
   overflow: hidden;
   border-radius: 16px;
-}
-
-.mobile-about-section__image img {
-  display: block;
-  width: 100%;
-  height: auto;
-  object-fit: cover;
+  aspect-ratio: 4 / 5;
+  min-height: 280px;
 }
 
 .mobile-about-section__title {

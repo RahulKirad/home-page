@@ -6,6 +6,15 @@
   overflow: visible;
 }
 
+.trending-carousel__header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 80px;
+}
+
 .trending-carousel__title {
   margin: 0;
   font-family: 'Playfair Display', serif;
@@ -16,16 +25,37 @@
   color: #201a14;
 }
 
+.trending-carousel__view-all {
+  position: absolute;
+  right: 80px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  font-family: 'Kanit', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ac7d0c;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.trending-carousel__view-all:hover {
+  color: #8c650a;
+}
+
 .trending-carousel__frame {
   position: relative;
-  margin-top: 48px;
+  margin-top: 32px;
   overflow: visible;
 }
 
 .trending-carousel__stage {
   display: flex;
   gap: 24px;
-  padding: 28px 56px 40px;
+  padding: 28px 56px 32px;
   overflow-x: auto;
   overflow-y: visible;
   scroll-behavior: smooth;
@@ -75,22 +105,21 @@
 .trending-card {
   flex-shrink: 0;
   width: 260px;
-  border: 1px solid #f0e6cc;
-  border-radius: 18px;
+  border: 1px solid #ebe3d0;
+  border-radius: 14px;
   background: #fff;
-  box-shadow: 0 8px 24px rgba(32, 26, 20, 0.08);
+  box-shadow: 0 4px 16px rgba(32, 26, 20, 0.06);
   overflow: hidden;
-  cursor: pointer;
   transition:
-    transform 0.35s ease,
-    box-shadow 0.35s ease,
-    border-color 0.35s ease;
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
 }
 
 .trending-card:hover {
-  transform: translateY(-10px) scale(1.02);
+  transform: translateY(-4px);
   border-color: #d4b56a;
-  box-shadow: 0 18px 36px rgba(172, 125, 12, 0.18);
+  box-shadow: 0 10px 24px rgba(172, 125, 12, 0.12);
 }
 
 .trending-card__media {
@@ -108,7 +137,7 @@
   object-fit: cover;
   opacity: 0;
   transform: scale(1.02);
-  transition: opacity 0.65s ease, transform 0.65s ease;
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
 .trending-card__media img.is-active {
@@ -118,7 +147,7 @@
 }
 
 .trending-card:hover .trending-card__media img.is-active {
-  transform: scale(1.08);
+  transform: scale(1.04);
 }
 
 .trending-card__dots {
@@ -143,55 +172,21 @@
   transform: scale(1.15);
 }
 
-.trending-card__overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(180deg, rgba(32, 26, 20, 0.05) 0%, rgba(32, 26, 20, 0.55) 100%);
-  opacity: 0;
-  transition: opacity 0.35s ease;
-}
-
-.trending-card:hover .trending-card__overlay {
-  opacity: 1;
-}
-
-.trending-card__cta {
-  padding: 0.55rem 1.1rem;
-  border: 1px solid #fff;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.92);
-  font-family: 'Kanit', sans-serif;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #6b3f2e;
-  transform: translateY(8px);
-  transition: transform 0.35s ease;
-}
-
-.trending-card:hover .trending-card__cta {
-  transform: translateY(0);
-}
-
 .trending-card__wishlist {
   position: absolute;
   top: 12px;
   right: 12px;
   z-index: 3;
   display: flex;
-  width: 34px;
-  height: 34px;
+  width: 30px;
+  height: 30px;
   align-items: center;
   justify-content: center;
   border: none;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.92);
   color: #ac7d0c;
+  font-size: 13px;
   opacity: 0;
   transform: scale(0.85);
   transition:
@@ -210,34 +205,37 @@
 }
 
 .trending-card__body {
-  padding: 14px 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 12px 14px;
 }
 
 .trending-card__name {
-  margin: 0 0 10px;
+  margin: 0;
   font-family: 'Playfair Display', serif;
-  font-size: 14px;
-  line-height: 1.35;
+  font-size: 13px;
+  line-height: 1.4;
   color: #201a14;
 }
 
 .trending-card__meta {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 10px;
+  gap: 6px;
+  margin: 0;
 }
 
 .trending-card__badge {
   display: inline-flex;
   align-items: center;
-  height: 25px;
-  padding: 0 10px;
+  height: 22px;
+  padding: 0 8px;
   border: 0.5px solid #ebdbb0;
-  border-radius: 3px;
-  background: #f3ead5;
+  border-radius: 4px;
+  background: #f8f2e4;
   font-family: 'Kanit', sans-serif;
-  font-size: 12px;
+  font-size: 11px;
   line-height: 1;
   color: #ac7d0c;
 }
@@ -246,11 +244,19 @@
   color: #7b7b7b;
 }
 
+.trending-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 2px;
+}
+
 .trending-card__wastage {
   margin: 0;
   font-family: 'Kanit', sans-serif;
-  font-size: 12px;
-  line-height: 16px;
+  font-size: 11px;
+  line-height: 1.3;
   color: #7b7b7b;
 }
 
@@ -259,26 +265,86 @@
   text-decoration: line-through;
 }
 
+.trending-card__wastage-new {
+  font-weight: 500;
+  color: #201a14;
+}
+
+.trending-card__cart {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 26px;
+  padding: 0 10px;
+  border: 1px solid #c9a84c;
+  border-radius: 6px;
+  background: #fff;
+  font-family: 'Kanit', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #ac7d0c;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.trending-card__cart:hover {
+  background: #faf3e3;
+  border-color: #ac7d0c;
+}
+
+.trending-card__cart--added {
+  border-color: #2d6a4f;
+  background: #edf7f1;
+  color: #2d6a4f;
+}
+
+.trending-card__cart--added:hover {
+  background: #edf7f1;
+}
+
+.trending-card__cart-icon {
+  flex-shrink: 0;
+  width: 12px;
+  height: 12px;
+}
+
 @media (max-width: 1023px) {
   .trending-carousel {
     position: relative;
     top: auto;
     left: auto;
     width: 100%;
-    padding: 40px 0 24px;
+    padding: 12px 0 16px;
+  }
+
+  .trending-carousel__header {
+    flex-direction: column;
+    gap: 12px;
+    padding: 0 16px;
   }
 
   .trending-carousel__title {
     font-size: clamp(1.75rem, 5vw, 2.25rem);
-    padding: 0 16px;
+  }
+
+  .trending-carousel__view-all {
+    position: static;
+    transform: none;
   }
 
   .trending-carousel__frame {
-    margin-top: 28px;
+    margin-top: 18px;
   }
 
   .trending-carousel__stage {
-    padding: 16px 48px 24px 16px;
+    padding: 12px 48px 20px 16px;
   }
 
   .trending-carousel__nav {

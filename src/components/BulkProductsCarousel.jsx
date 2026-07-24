@@ -165,6 +165,9 @@ export default function BulkProductsCarousel() {
     <section className="bulk-carousel" aria-label="Bulk Products">
       <div className="bulk-carousel__header">
         <h2 className="bulk-carousel__title">Bulk Products</h2>
+        <button type="button" className="bulk-carousel__view-all">
+          View All
+        </button>
       </div>
 
       <div className="bulk-carousel__frame">

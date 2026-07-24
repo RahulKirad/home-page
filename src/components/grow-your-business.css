@@ -1,0 +1,229 @@
+.grow-business {
+  position: absolute;
+  left: 50%;
+  top: 6917px;
+  z-index: 2;
+  width: 1279px;
+  transform: translateX(calc(-50% - 2.5px));
+}
+
+.grow-business__panel {
+  padding: 42px 56px 48px;
+  border-radius: 16px;
+  background: #201a14;
+}
+
+.grow-business__header {
+  text-align: center;
+}
+
+.grow-business__title {
+  margin: 0;
+  font-family: 'Playfair Display SC', 'Playfair Display', serif;
+  font-size: 42px;
+  font-weight: 400;
+  line-height: 1.1;
+  color: #fff;
+}
+
+.grow-business__subtitle {
+  margin: 14px auto 0;
+  max-width: 620px;
+  font-family: 'Kanit', sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.grow-business__cards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 34px;
+}
+
+.grow-business-card {
+  overflow: hidden;
+  border: 1px solid #c9a84c;
+  border-radius: 13px;
+  background: #37332f;
+  transition: box-shadow 0.25s ease;
+}
+
+.grow-business-card--open {
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
+}
+
+.grow-business-card__header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 18px;
+  width: 100%;
+  min-height: 96px;
+  padding: 16px 22px;
+  border: none;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+}
+
+.grow-business-card__titles {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.grow-business-card__eyebrow {
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: #e1b63b;
+}
+
+.grow-business-card__title {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.grow-business-card__chevron {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 33px;
+  height: 33px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.grow-business-card__chevron-icon {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.25s ease;
+}
+
+.grow-business-card__chevron-icon--open {
+  transform: rotate(180deg);
+}
+
+.grow-business-card__body-wrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s ease;
+}
+
+.grow-business-card--open .grow-business-card__body-wrap {
+  grid-template-rows: 1fr;
+}
+
+.grow-business-card__body {
+  overflow: hidden;
+  min-height: 0;
+}
+
+.grow-business-card__divider {
+  height: 1px;
+  margin: 0 22px;
+  background: rgba(201, 168, 76, 0.35);
+}
+
+.grow-business-card__copy {
+  padding: 22px 22px 0;
+}
+
+.grow-business-card__copy p {
+  margin: 0 0 16px;
+  font-family: 'Kanit', sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.grow-business-card__copy p:last-child {
+  margin-bottom: 0;
+}
+
+.grow-business-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 24px 22px 22px;
+  padding: 12px 22px;
+  border: none;
+  border-radius: 999px;
+  background: #e1b63b;
+  font-family: 'Kanit', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: #201a14;
+  cursor: pointer;
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.grow-business-card__cta:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 1023px) {
+  .grow-business {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    transform: none;
+    padding: 0 16px;
+  }
+
+  .grow-business__panel {
+    padding: 32px 20px 28px;
+    border-radius: 14px;
+  }
+
+  .grow-business__title {
+    font-size: clamp(1.75rem, 5vw, 2.5rem);
+  }
+
+  .grow-business__subtitle {
+    font-size: 0.9375rem;
+  }
+
+  .grow-business__cards {
+    margin-top: 24px;
+  }
+
+  .grow-business-card__header {
+    gap: 14px;
+    min-height: 88px;
+    padding: 14px 16px;
+  }
+
+  .grow-business-card__title {
+    font-size: 1.125rem;
+  }
+
+  .grow-business-card__copy {
+    padding: 18px 16px 0;
+  }
+
+  .grow-business-card__copy p {
+    font-size: 0.9375rem;
+  }
+
+  .grow-business-card__cta {
+    margin: 20px 16px 18px;
+    width: calc(100% - 32px);
+    justify-content: center;
+  }
+}

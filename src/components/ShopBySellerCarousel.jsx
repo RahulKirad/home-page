@@ -136,7 +136,12 @@ export default function ShopBySellerCarousel() {
 
   return (
     <section className="shop-by-seller" aria-label="Shop By Seller">
-      <h2 className="shop-by-seller__title">Shop By Seller</h2>
+      <div className="shop-by-seller__header">
+        <h2 className="shop-by-seller__title">Shop By Seller</h2>
+        <button type="button" className="shop-by-seller__view-all">
+          View All
+        </button>
+      </div>
 
       <div className="shop-by-seller__frame">
         <NavButton direction="prev" onClick={() => scrollByStep(-1)} />
